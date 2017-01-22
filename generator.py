@@ -67,9 +67,9 @@ def htmlToImage():
 
         # open in webpage
         driver = webdriver.Chrome(executable_path='./tools/chromedriver')
-        # driver.set_window_position(0, 0)
+        driver.set_window_position(0, 0)
         # driver.set_window_size(1024, 768)
-        driver.maximize_window()
+        driver.set_window_size(1920, 1080)
 
         print ("Rendering html {id}".format(id=index))
         driver.get(temp_name)
