@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flask Template Example</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <!-- <link href="./libs/bootstrap.min.css" rel="stylesheet" media="screen"> -->
+    <style type="text/css">
+      #date_absolute {
+        position: absolute;
+        top: -80px;
+        right: 10px;
+        /*width: 200px;
+        height: 100px;*/
+        border: 3px solid red;
+      }
+      .container {
+        margin: 0 auto;
+        width: 800px;
+        position:relative;
+        top:50px;
+        left:100px;
+        background: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="date_absolute">{{ date }}</h1>
+      <p>{{ text }}</p>
+
+      <p>My string: {{ my_string }}</p>
+
+
+    </div>
+    <!-- <script src="./libs/jquery-1.10.2.min.js"></script>
+    <script src="./libs/bootstrap.min.js"></script> -->
+  </body>
+</html>

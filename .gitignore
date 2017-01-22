@@ -1,3 +1,5 @@
 .idea/*
-generated/*
-images/*
+generated_html/*
+generated_doc/*
+converted_images/*
+tools/*

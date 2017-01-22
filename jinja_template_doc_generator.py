@@ -2,7 +2,7 @@
 from docxtpl import DocxTemplate
 from faker import Faker
 
-doc = DocxTemplate("template/docTemplate-1.docx")
+doc = DocxTemplate("doc_template/docTemplate-1.docx")
 fake = Faker()
 
 def escaper(unicodeList):
