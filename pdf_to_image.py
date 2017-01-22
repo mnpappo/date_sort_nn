@@ -1,4 +1,3 @@
-
 from PIL import Image as Img
 from wand.image import Image
 import uuid
@@ -24,8 +23,8 @@ def convert(filepdf):
         return False
     else:
         """
-        We finally success to convert pdf to image. 
-        but image is not join by it self when we convert pdf files to image. 
+        We finally success to convert pdf to image.
+        but image is not join by it self when we convert pdf files to image.
         now we need to merge all file
         """
         pathsave = []
@@ -47,7 +46,7 @@ def convert(filepdf):
             for i in list_im:
                 os.remove(i)
         except Exception, err:
-            #print err 
+            #print err
             return False
         return pathsave
 
