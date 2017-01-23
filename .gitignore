@@ -3,3 +3,4 @@ generated_html/*
 generated_doc/*
 converted_images/*
 tools/*
+geckodriver.log

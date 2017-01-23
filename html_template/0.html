@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Flask Template Example</title>
+    <title>Test Template Example</title>
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <!-- <link href="./libs/bootstrap.min.css" rel="stylesheet" media="screen"> -->
     <style type="text/css">
       body {
         color: #000;
-        background-color: white;
+        background-color: {{ bg_color }};
+        width: 1366px;
       }
-      #date_absolute {
-        position: absolute;
-        top: -80px;
-        right: 10px;
-        /*width: 200px;
-        height: 100px;*/
-        border: 2px solid red;
-        color: green;
+      .date_class {
+        border: 1px solid red;
+        color: black;
+        background-color: white;
       }
       .container {
         margin: 0 auto;
         width: 1024px;
         position:relative;
-        top:50px;
-        background: #ffffff;
+        margin: 20px
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1 id="date_absolute">{{ date }}</h1>
+      <!-- <h1 class="date_absolute">{{ date }}</h1> -->
       <p>{{ text }}</p>
 
       <p>My string: {{ my_string }}</p>
+      <p class="date_class">{{ date }}</p>
 
 
     </div>

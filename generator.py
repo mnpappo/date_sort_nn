@@ -6,8 +6,8 @@ from faker import Faker
 import glob
 import os
 
-file_location = "/Users/mnpappo/Documents/projects/python/neural_network/date_sort_nn/generated_html"
-image_save_path = "./converted_images/"
+file_location = "/home/machine/Documents/kill_bill/generated_html"
+
 # get a list of all the files to open
 html_file_directory = os.path.join(file_location, '*.html')
 html_file_list = glob.glob(html_file_directory)
@@ -15,7 +15,7 @@ html_file_list = glob.glob(html_file_directory)
 env = Environment(loader=FileSystemLoader('html_template'))
 
 
-def escase_me(unicodeList):
+def escape_me(unicodeList):
     """
     Here comes the hero to rescue text from evil format.
     """
@@ -26,7 +26,7 @@ def escase_me(unicodeList):
     return prize
 
 
-def htmlTemplateGenerator():
+def htmlTemplateGenerator(bg_type):
     fake = Faker()
 
     for index in range(100000):
@@ -40,9 +40,10 @@ def htmlTemplateGenerator():
             break
         # pass params to the jinja2 template
         output_from_parsed_template = template.render(
+            bg_color = bg_type,
             my_string = fake.name(),
-            text = escase_me(fake.paragraphs(nb=4)),
-            date = fake.date(pattern="%Y-%m-%d")
+            text = escape_me(fake.paragraphs(nb=4)),
+            date = fake.date(pattern="%Y-%m-%d"),
             )
 
         # to save the results
@@ -58,7 +59,7 @@ def htmlTemplateGenerator():
     return True
 
 
-def htmlToImage():
+def htmlToImage(image_path):
     index = 1
     # for every html in the direcory
     for html_file in html_file_list:
@@ -67,14 +68,15 @@ def htmlToImage():
 
         # open in webpage
         driver = webdriver.Chrome(executable_path='./tools/chromedriver')
+        # driver = webdriver.Firefox()
         driver.set_window_position(0, 0)
         # driver.set_window_size(1024, 768)
-        driver.set_window_size(1920, 1080)
+        driver.set_window_size(1366, 768)
 
         print ("Rendering html {id}".format(id=index))
         driver.get(temp_name)
         image_name = '0' + str(index) + '.png'
-        driver.save_screenshot(image_save_path + image_name)
+        driver.save_screenshot(image_path + image_name)
         print ("Html to image {id} successfully converted".format(id=index))
         driver.quit()
         index += 1
@@ -82,12 +84,23 @@ def htmlToImage():
 
 
 if __name__ == '__main__':
-    if htmlTemplateGenerator() is True:
-        if htmlToImage() is True:
+    bg_type_black = 'black'
+    bg_type_white = 'white'
+    image_save_path_white = "./converted_images/"
+    image_save_path_black = "./converted_images_black/"
+
+    if htmlTemplateGenerator(bg_type_white) is True:
+        if htmlToImage(image_save_path_white) is True:
             print("-----------------------")
             print("Successfully all job done. :) ")
             print("-----------------------")
         else:
             print ("Errrroooorrr!!!!!!!!")
-    else:
-        print ("Errrroooorrr!!!!!!!!")
+
+    if htmlTemplateGenerator(bg_type_black) is True:
+        if htmlToImage(image_save_path_black) is True:
+            print("-----------------------")
+            print("Successfully all job done. :) ")
+            print("-----------------------")
+        else:
+            print ("Errrroooorrr!!!!!!!!")
