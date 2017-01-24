@@ -10,8 +10,7 @@
     }
     .date_class {
       border: 1px solid red;
-      color: black;
-      background-color: white;
+      background-color: white !important;
     }
     .container {
       margin: 0 auto;
@@ -309,9 +308,11 @@
         <p class="c3"><span class="c8">{{ name }}</span></p>
         <p class="c16"><span class="c10">Dear {{ name }},</span></p>
         <p class="c6"><span class="c10">{{ paragraph_one }}</span></p>
-        <center class="date_class">
-          {{ date_two }}
-        </center>
+        <div align="center">
+          <span class="date_class">
+            {{ date }}
+          </span>
+        </div>
         <p class="c6"><span>{{ paragraph_two }}</span></p>
         <p class="c6"><span class="c10">{{ paragraph_three }}</span></p>
         <p class="c6"><span class="c10">Best regards,</span></p>

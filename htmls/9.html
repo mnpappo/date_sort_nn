@@ -3,6 +3,24 @@
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
     <style type="text/css">
+    /*html * {
+       color: #000 !important;
+       background-color: black !important;
+    }*/
+    body {
+      color: #000;
+      background-color: {{ bg_color }};
+      width: 1366px;
+    }
+    .date_class {
+      border: 1px solid red;
+      background-color: white !important;
+    }
+    .container {
+      margin: 0 auto;
+      width: 1024px;
+      position:relative;
+    }
         @import url('https://themes.googleusercontent.com/fonts/css?kit=3qINvnjb346LubKDfLRn69t6G6Z1RrRfgULZ1AHo7mPOfsfM6rvuuu7h1pY3r_-A');
         .lst-kix_tsy7d9cmpnql-7>li {
             counter-increment: lst-ctn-kix_tsy7d9cmpnql-7
@@ -11,7 +29,7 @@
         ol.lst-kix_1eziyh8wpo9m-7.start {
             counter-reset: lst-ctn-kix_1eziyh8wpo9m-7 0
         }
-        
+
         .lst-kix_w1b687jpl7aq-2>li {
             counter-increment: lst-ctn-kix_w1b687jpl7aq-2
         }
@@ -1168,35 +1186,39 @@
     </style>
 </head>
 
-<body class="c11">
-    <div>
-        <p class="c13"><span class="c2"></span></p>
-        <p class="c16"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 4.00px;"><img alt="" src="images/image00.png" style="width: 624.00px; height: 4.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="horizontal line"></span></p>
+<body>
+    <div class="container">
+      <div class="c11">
+        <div>
+            <p class="c13"><span class="c2"></span></p>
+            <p class="c16"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 4.00px;"><img alt="" src="images/image00.png" style="width: 624.00px; height: 4.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="horizontal line"></span></p>
+        </div>
+        <p class="c10"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 6.67px;"><img alt="" src="images/image01.png" style="width: 624.00px; height: 6.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="horizontal line"></span></p>
+        <p
+            class="c0"><span class="c6">{{ company }}</span></p>
+            <p class="c0"><span class="c4">{{ street_address }}</span></p>
+            <p class="c0"><span class="c8">{{ address }}</span></p>
+            <p class="c0"><span class="c4">{{ phone }}</span></p>
+            <p class="c5 title" id="h.5x0d5h95i329"><span>{{ job }}</span></p>
+            <p class="c0 subtitle" id="h.af80tl7prv5v"><span class="c15 date_class"> {{ date }}</span></p>
+            <h1 class="c3" id="h.14mpx6a8znb7"><span>OVERVIEW</span></h1>
+            <p class="c1"><span>{{ paragraph_one }} </span></p>
+            <h1 class="c3"
+                id="h.oymnw3nlvwib"><span class="c12">GOALS</span></h1>
+            <ol class="c9 lst-kix_w1b687jpl7aq-0 start" start="1">
+                <li class="c1 c17"><span class="c18">{{ sentence_one }}</span></li>
+                <li class="c1 c17"><span>S</span><span class="c2">{{ sentence_two }}</span></li>
+            </ol>
+            <h1 class="c3" id="h.c5rpsdy8g2ak"><span class="c18">SPECIFICATIONS</span></h1>
+            <p class="c1"><span>{{ paragraph_two }}</span></p>
+            <h1
+                class="c3" id="h.x5u0l8hx0kbh"><span>MILESTONES</span></h1>
+                <h2 class="c5" id="h.jltys38rhgql"><span>Lorem Ipsum</span></h2>
+                <p class="c1"><span class="c2">{{ sentence_three }}</span></p>
+                <h2 class="c5" id="h.6x8rkjwa8fzc"><span class="c6">Dolor Sit Amet</span></h2>
+                <p class="c1"><span class="c18">{{ sentence_six }}</span></p>
+      </div>
     </div>
-    <p class="c10"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 6.67px;"><img alt="" src="images/image01.png" style="width: 624.00px; height: 6.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="horizontal line"></span></p>
-    <p
-        class="c0"><span class="c6">Your Company</span></p>
-        <p class="c0"><span class="c4">123 Your Street</span></p>
-        <p class="c0"><span class="c8">Your City, ST 12345</span></p>
-        <p class="c0"><span class="c4">(123) 456-7890</span></p>
-        <p class="c5 title" id="h.5x0d5h95i329"><span>Project Name</span></p>
-        <p class="c0 subtitle" id="h.af80tl7prv5v"><span class="c15">4</span><span class="c19 c21">th</span><span class="c19">&nbsp;September 20XX</span></p>
-        <h1 class="c3" id="h.14mpx6a8znb7"><span>OVERVIEW</span></h1>
-        <p class="c1"><span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper. </span></p>
-        <h1 class="c3"
-            id="h.oymnw3nlvwib"><span class="c12">GOALS</span></h1>
-        <ol class="c9 lst-kix_w1b687jpl7aq-0 start" start="1">
-            <li class="c1 c17"><span class="c18">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</span></li>
-            <li class="c1 c17"><span>S</span><span class="c2">ed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</span></li>
-        </ol>
-        <h1 class="c3" id="h.c5rpsdy8g2ak"><span class="c18">SPECIFICATIONS</span></h1>
-        <p class="c1"><span>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.</span></p>
-        <h1
-            class="c3" id="h.x5u0l8hx0kbh"><span>MILESTONES</span></h1>
-            <h2 class="c5" id="h.jltys38rhgql"><span>Lorem Ipsum</span></h2>
-            <p class="c1"><span class="c2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</span></p>
-            <h2 class="c5" id="h.6x8rkjwa8fzc"><span class="c6">Dolor Sit Amet</span></h2>
-            <p class="c1"><span class="c18">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</span></p>
 </body>
 
 </html>

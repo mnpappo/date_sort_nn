@@ -3,6 +3,21 @@
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
     <style type="text/css">
+    body {
+      color: #000 !important;
+      background-color: {{ bg_color }};
+      width: 1366px;
+    }
+    .date_class {
+      border: 1px solid red;
+      color: black;
+      background-color: white;
+    }
+    .container {
+      margin: 0 auto;
+      width: 1024px;
+      position:relative;
+    }
         @import url('https://themes.googleusercontent.com/fonts/css?kit=iMc4-4exjgqA-toZgqqJBapXv4aEsWUJfLHj8vTDOv6sKTypj6oMABt6aLc3fm-oS8WuZCZU7xsrLLn8Eq5Dllll7szA_gjBFRwwth-OR18');
         ul.lst-kix_7eepdjhscbou-4 {
             list-style-type: none
@@ -1388,7 +1403,7 @@
         }
 
         .c10 {
-            background-color: #ffffff;
+            background-color: {{ bg_color }};
             max-width: 468pt;
             padding: 54pt 72pt 54pt 72pt
         }
@@ -1528,47 +1543,49 @@
     </style>
 </head>
 
-<body class="c10">
-    <div>
-        <p class="c15"><span class="c8">&nbsp; </span></p>
-        <p class="c17"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 8.00px;"><img alt="" src="images/image00.png" style="width: 624.00px; height: 8.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="horizontal line"></span>
-            <span
-                class="c7">&nbsp;</span>
-        </p>
+<body>
+    <div class="container">
+      <div class="c10">
+        <div>
+            <p class="c15"><span class="c8">&nbsp; </span></p>
+            <p class="c17"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 8.00px;"><img alt="" src="images/image00.png" style="width: 624.00px; height: 8.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="horizontal line"></span>
+                <span
+                    class="c7">&nbsp;</span>
+            </p>
+        </div>
+        <p class="c2"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 8.00px;"><img alt="" src="images/image00.png" style="width: 624.00px; height: 8.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="horizontal line"></span></p>
+        <p
+            class="c20 title" id="h.2gazcsgmxkub"><span class="c0">{{ job }}</span></p>
+            <p class="c2 subtitle" id="h.2nuf54q86v7q"><span>{{ day }}, <span class="date_class">{{ date }}</span></span></p>
+            <p class="c2"><span class="c11 c18">&#9472;</span></p>
+            <h1 class="c9" id="h.pmazbh81wixz"><span>Attendees</span></h1>
+            <p class="c6"><span>{{ name }}</span><span>, </span><span class="c14">{{ job }}</span></p>
+            <p class="c2"><span>{{ name_two }}</span><span>, </span><span class="c19">{{ job }}</span></p>
+            <p class="c2"><span>{{ name }}</span><span class="c19">, {{ job }}</span></p>
+            <h1 class="c9" id="h.3at9u9s4e0vp"><span>Agenda</span></h1>
+            <h2 class="c6" id="h.ya9ldh31040g"><span>{{ sentence_one }}</span></h2>
+            <ol class="c12 lst-kix_8ptmsowchg22-0 start" start="1">
+                <li class="c1"><span class="c7">{{ sentence_two }} </span></li>
+            </ol>
+            <h2 class="c6" id="h.kxzde1sl79s3"><span class="c16">New Business</span></h2>
+            <ol class="c12 lst-kix_8ptmsowchg22-0" start="2">
+                <li class="c1"><span class="c7">{{ sentence_three }} <span class="date_class"> {{ date }}</span></span></li>
+                <li class="c1"><span class="c7">{{ sentence_four }}</span></li>
+            </ol>
+            <h1 class="c9" id="h.izh0w05mz75r"><span>Notes</span></h1>
+            <ul class="c12 lst-kix_ajcih27tlk1j-0 start">
+                <li class="c1"><span class="c11">{{ sentence_five }} </span></li>
+                <li class="c1"><span class="c11">{{ sentence_six }}</span></li>
+            </ul>
+            <ul class="c12 lst-kix_ajcih27tlk1j-1 start">
+                <li class="c6 c13"><span class="c7">{{ sentence_one }}</span></li>
+            </ul>
+            <h1 class="c9" id="h.yb84yajcu17v"><span class="c5">Action Items</span></h1>
+            <ol class="c12 lst-kix_auw1ga100qw9-0 start" start="1">
+                <li class="c1"><span class="c7">{{ sentence_five }} </span></li>
+            </ol>
+      </div>
     </div>
-    <p class="c2"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 8.00px;"><img alt="" src="images/image00.png" style="width: 624.00px; height: 8.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="horizontal line"></span></p>
-    <p
-        class="c20 title" id="h.2gazcsgmxkub"><span class="c0">Annual Board Meeting</span></p>
-        <p class="c2 subtitle" id="h.2nuf54q86v7q"><span>Friday, 09.04.20XX</span></p>
-        <p class="c2"><span class="c11 c18">&#9472;</span></p>
-        <h1 class="c9" id="h.pmazbh81wixz"><span>Attendees</span></h1>
-        <p class="c6"><span>Wendy Writer</span><span>, </span><span class="c14">CEO</span></p>
-        <p class="c2"><span>Ronny Reader</span><span>, </span><span class="c19">CFO</span></p>
-        <p class="c2"><span>Abby Author</span><span class="c19">, CTO</span></p>
-        <h1 class="c9" id="h.3at9u9s4e0vp"><span>Agenda</span></h1>
-        <h2 class="c6" id="h.ya9ldh31040g"><span>Last Meeting Follow-up</span></h2>
-        <ol class="c12 lst-kix_8ptmsowchg22-0 start" start="1">
-            <li class="c1"><span class="c7">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </span></li>
-        </ol>
-        <h2 class="c6" id="h.kxzde1sl79s3"><span class="c16">New Business</span></h2>
-        <ol class="c12 lst-kix_8ptmsowchg22-0" start="2">
-            <li class="c1"><span class="c7">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </span></li>
-            <li class="c1"><span class="c7">Suspendisse scelerisque mi a mi. </span></li>
-        </ol>
-        <h1 class="c9" id="h.izh0w05mz75r"><span>Notes</span></h1>
-        <ul class="c12 lst-kix_ajcih27tlk1j-0 start">
-            <li class="c1"><span class="c11">Lorem ipsum dolor sit amet</span><span class="c7">&nbsp;consectetuer adipiscing elit. </span></li>
-            <li class="c1"><span class="c11">Vestibulum ante</span><span class="c7">&nbsp;ipsum primis elementum, libero interdum auctor cursus, sapien enim dictum quam. </span></li>
-        </ul>
-        <ul class="c12 lst-kix_ajcih27tlk1j-1 start">
-            <li class="c6 c13"><span class="c7">Phasellus vehicula nonummy nunc.</span></li>
-        </ul>
-        <h1 class="c9" id="h.yb84yajcu17v"><span class="c5">Action Items</span></h1>
-        <ol class="c12 lst-kix_auw1ga100qw9-0 start" start="1">
-            <li class="c1"><span class="c7">Lorem ipsum dolor sit amet consectetuer adipiscing elit. </span></li>
-        </ol>
-        <h1 class="c9" id="h.6zsavxw7qpwy"><span class="c5">Next Meeting Agenda Items</span></h1>
-        <p class="c6"><span class="c7">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</span></p>
 </body>
 
 </html>
