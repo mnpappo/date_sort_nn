@@ -3,6 +3,35 @@
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
     <style type="text/css">
+    body {
+      color: #000;
+      background-color: {{ bg_color }};
+      width: 1366px;
+    }
+    .date_container {
+      position: relative;
+      height: 1em;
+    }
+
+    .date_container p {
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+      left: 50%;
+      border: 1px solid red;
+    }
+
+    .date_class {
+      border: 1px solid red;
+      color: black;
+      background-color: white;
+    }
+    .container {
+      margin: 0 auto;
+      width: 1024px;
+      position:relative;
+    }
+
         @import url('https://themes.googleusercontent.com/fonts/css?kit=xTOoZr6X-i3kNg7pYrzMsnEzyYBuwf3lO_Sc3Mw9RUVbV0WvE1cEyAoIq5yYZlSc');
         ol {
             margin: 0;
@@ -367,51 +396,55 @@
     </style>
 </head>
 
-<body class="c7">
-    <p class="c11 c23"><span class="c1"></span></p>
-    <a id="t.c8006575e69b546fb6050192dd189fc7e6a14c96"></a>
-    <a id="t.0"></a>
-    <table class="c25">
-        <tbody>
-            <tr class="c21">
-                <td class="c13" colspan="1" rowspan="1">
-                    <p class="c9"><span class="c15 c26">Your</span></p>
-                    <p class="c9"><span class="c26 c15">Name</span></p>
-                    <p class="c24 subtitle" id="h.np1x19peam06"><span class="c15 c16">C</span><span>reative D</span><span class="c16 c15 c28">irector</span></p>
-                    <p class="c2"><span class="c15 c20">&#12641;</span></p>
-                    <p class="c6"><span class="c15">Your Name</span></p>
-                    <p class="c2"><span class="c0">123 Your Street</span></p>
-                    <p class="c2"><span>Your City, ST 12345</span></p>
-                    <p class="c2"><span class="c18">123.456.7890</span></p>
-                    <p class="c2"><span class="c18">no_reply@example.com</span></p>
-                </td>
-                <td class="c8" colspan="1" rowspan="1">
-                    <h2 class="c2" id="h.p4f3lvfon4kg"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 418.00px; height: 2.67px;"><img alt="" src="images/image00.png" style="width: 418.00px; height: 2.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="horizontal line"></span></h2>
-                    <p class="c6"><span class="c17">4 SEPTEMBER 20XX</span></p>
-                    <h1 class="c4 c14" id="h.387wrthhx46m"><span class="c12">Ronny Reader</span></h1>
-                    <p class="c11"><span class="c0">CEO, Company Name</span></p>
-                    <p class="c11"><span class="c0">123 Address St </span></p>
-                    <p class="c11"><span>Anytown, ST 12345</span></p>
-                    <p class="c4"><span class="c22">Dear Ms. </span><span>Reader</span><span class="c0">,</span></p>
-                    <p class="c6"><span class="c0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas congue, arcu a ornare dictum, nisl neque aliquet est, et ultricies arcu mauris vel velit. Curabitur porta feugiat imperdiet. Duis id turpis scelerisque, cursus mauris iaculis, tempus orci. Nulla ornare eu augue nec pharetra. Aliquam erat volutpat. Suspendisse sagittis venenatis enim, eget porta nibh malesuada ut. Nullam feugiat euismod leo nec congue. Vivamus aliquet tellus pharetra massa rutrum convallis. Integer posuere massa nec iaculis ullamcorper. Curabitur ligula nunc, tincidunt ac lorem facilisis, euismod feugiat tellus. In et consequat augue. Etiam fermentum nibh nisi, vitae mattis dolor consequat vitae. </span></p>
-                    <p
-                        class="c6"><span class="c22">Integer risus nunc, mattis in ornare sit amet, aliquam quis ligula. Vestibu</span><span>lum ante</span><span class="c0">&nbsp;ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut mauris massa, iaculis non augue vitae, mattis tincidunt turpis. In laoreet turpis leo, ut laoreet leo blandit feugiat. </span></p>
+<body>
+    <div class="container">
+      <div class="c7">
+        <p class="c11 c23"><span class="c1"></span></p>
+        <a id="t.c8006575e69b546fb6050192dd189fc7e6a14c96"></a>
+        <a id="t.0"></a>
+        <table class="c25">
+            <tbody>
+                <tr class="c21">
+                    <td class="c13" colspan="1" rowspan="1">
+                        <p class="c9"><span class="c15 c26">{{ name }}</span></p>
+                        <p class="c24 subtitle" id="h.np1x19peam06"><span class="c15 c16">{{ job }}</span></p>
+                        <p class="c2"><span class="c15 c20">&#12641;</span></p>
+                        <p class="c6"><span class="c15">{{ name_two }}</span></p>
+                        <p class="c2"><span class="c0">{{ street_address }}</span></p>
+                        <p class="c2"><span>{{ city }}, QW {{ postcode }}</span></p>
+                        <p class="c2"><span class="c18">{{ phone }}</span></p>
+                        <p class="c2"><span class="c18">{{ email }}</span></p>
+                        <p class="c6"><span class="date_class">{{ date }}</span></p>
+                    </td>
+                    <td class="c8" colspan="1" rowspan="1">
+                        <h2 class="c2" id="h.p4f3lvfon4kg"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 418.00px; height: 2.67px;"><img alt="" src="images/image00.png" style="width: 418.00px; height: 2.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="horizontal line"></span></h2>
+                        <p class="c6"><span class="c17 date_class">{{ date }}</span></p>
+                        <h1 class="c4 c14" id="h.387wrthhx46m"><span class="c12">{{ name_two }}</span></h1>
+                        <p class="c11"><span class="c0">{{ job }}, {{ company }}</span></p>
+                        <p class="c11"><span class="c0">{{ street_address }} </span></p>
+                        <p class="c11"><span>{{ city }}, ST {{ zipcode }}</span></p>
+                        <p class="c4"><span class="c22">Dear Ms. </span><span>{{ name }}</span><span class="c0">,</span></p>
+                        <p class="c6"><span class="c0"> {{ big_paragraph }} </span></p>
                         <p
-                            class="c6"><span class="c0">Nullam vel ornare justo. Vivamus at lectus sodales, molestie orci vel, facilisis mi. In vel sem nec odio facilisis laoreet. Vivamus vitae orci eget erat euismod pretium non ut urna. Mauris quis velit ut libero sollicitudin aliquet. Donec eu leo finibus, euismod lectus sed, accumsan enim. </span></p>
+                            class="c6"><span class="c22">{{ paragraph_one }}</span></p>
                             <p
-                                class="c6"><span class="c0">Duis sit amet erat sit amet nulla aliquam ullamcorper sagittis non lectus. Nam eget bibendum lorem, eu suscipit nulla. Phasellus arcu velit, vestibulum viverra malesuada sit amet, varius vitae mauris. Donec mollis laoreet mollis. Nullam malesuada tempus volutpat. Cras aliquam luctus suscipit. In sollicitudin risus ut pulvinar dignissim. </span></p>
+                                class="c6"><span class="c0">{{ paragraph_two }} </span></p>
                                 <p
-                                    class="c6"><span class="c0">Sincerely,</span></p>
-                                    <p class="c3"><span class="c0"></span></p>
-                                    <p class="c3"><span class="c0"></span></p>
-                                    <p class="c3"><span class="c0"></span></p>
-                                    <p class="c3"><span class="c0"></span></p>
-                                    <h2 class="c6 c14" id="h.l28qqe692yqy"><span class="c12">Your Name</span><span class="c10">&nbsp;</span></h2></td>
-            </tr>
-        </tbody>
-    </table>
-    <p class="c3"><span class="c0"></span></p>
-    <p class="c3 c27"><span class="c0"></span></p>
+                                    class="c6"><span class="c0">{{ paragraph_three }}</span></p>
+                                    <p
+                                        class="c6"><span class="c0">Sincerely,</span></p>
+                                        <p class="c3"><span class="c0"></span></p>
+                                        <p class="c3"><span class="c0"></span></p>
+                                        <p class="c3"><span class="c0"></span></p>
+                                        <p class="c3"><span class="c0"></span></p>
+                                        <h2 class="c6 c14" id="h.l28qqe692yqy"><span class="c12">{{ name_two }}</span><span class="c10">&nbsp;</span></h2></td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="c3"><span class="c0"></span></p>
+        <p class="c3 c27"><span class="c0"></span></p>
+      </div>
+    </div>
 </body>
 
 </html>
