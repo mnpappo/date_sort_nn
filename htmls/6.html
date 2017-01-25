@@ -8,19 +8,6 @@
       background-color: {{ bg_color }};
       width: 1366px;
     }
-    .date_container {
-      position: relative;
-      height: 1em;
-    }
-
-    .date_container p {
-      position: absolute;
-      top: 50%;
-      transform: translate(0, -50%);
-      left: 50%;
-      border: 1px solid red;
-    }
-
     .date_class {
       border: 1px solid red;
       color: black;
@@ -813,35 +800,35 @@
             <p class="c13"><span class="c5"></span></p>
         </div>
         <p class="c17 title" id="h.hhevn0icya3z"><span>{{ job }}</span></p>
-        <p class="c11 subtitle" id="h.6bc6e5a12ww9"><span class="date_class">{{ date }} </span><span class="c15">/ {{ time }} / {{ address }}</span></p>
+        <p class="c11 subtitle" id="h.6bc6e5a12ww9"><span class="date_class"> {{ date }} </span><span class="c15">/ {{ time }} / {{ name }}</span></p>
         <h1 class="c8" id="h.d7c6siica7vj"><span class="c9">Attendees </span></h1>
         <p class="c0"><span>{{ name }}, {{ name_two }}</span><span></span></p>
         <h1 class="c8" id="h.bx9u4mwuq9wu"><span>Agenda</span></h1>
-        <h2 class="c11" id="h.cllctxd68p6"><span class="c21 c7">Last Meeting Follow-up</span></h2>
+        <h2 class="c11" id="h.cllctxd68p6"><span class="c21 c7">{{ sentence_one }}</span></h2>
         <ol class="c2 lst-kix_rw4kzzpjrib3-0 start" start="1">
-            <li class="c0 c14 c20"><span class="c6">{{ sentence_one }} </span></li>
+            <li class="c0 c14 c20"><span class="c6">{{ sentence_two }}</span></li>
         </ol>
         <h2 class="c11" id="h.t6mt4yhxr2fu"><span class="c7 c21">{{ job }}</span></h2>
         <ol class="c2 lst-kix_rw4kzzpjrib3-0" start="2">
-            <li class="c0 c14"><span class="c6">{{ sentence_two }} </span></li>
-            <li class="c0 c14"><span>{{ sentence_three }} </span></li>
+            <li class="c0 c14"><span class="c6">{{ sentence_three }}</span></li>
+            <li class="c0 c14"><span>{{ sentence_four }} </span></li>
         </ol>
         <h1 class="c8" id="h.v28k6emdbgnv"><span class="c9">Notes</span></h1>
         <ul class="c2 lst-kix_jucqvcbl0l0-0 start">
-            <li class="c0 c14"><span class="c7">{{ sentence_three }}</span></li>
-            <li class="c0 c14"><span class="c6">{{ sentence_four }} </span></li>
             <li class="c0 c14"><span class="c7">{{ paragraph_one }}</span></li>
+            <li class="c0 c14"><span class="c6">{{ sentence_five }} </span></li>
+            <li class="c0 c14"><span class="c7">{{ paragraph_two }}</span></li>
         </ul>
         <ul class="c2 lst-kix_jucqvcbl0l0-1 start">
-            <li class="c0 c18"><span>{{ sentence_one }} </span></li>
+            <li class="c0 c18"><span>{{ sentence_six }} </span></li>
         </ul>
         <h1 class="c8" id="h.pqv95n650218"><span class="c9">Action Items</span></h1>
         <ol class="c2 lst-kix_j0qzbfmcezip-0 start" start="1">
-            <li class="c0 c14"><span class="c6">{{ sentence_three }} </span></li>
-            <li class="c0 c14"><span class="c6">{{ sentence_one }}</span></li>
+            <li class="c0 c14"><span class="c6">{{ sentence_one }} </span></li>
+            <li class="c0 c14"><span class="c6">{{ sentence_five }}</span></li>
         </ol>
-        <h1 class="c8" id="h.vquozmyn3gny"><span class="c9">Next Meeting Agenda</span></h1>
-        <p class="c0"><span class="c6">{{ sentence_five }}.</span></p>
+        <h1 class="c8" id="h.vquozmyn3gny"><span class="c9">Next Meeting Agenda <span class="date">{{ date }}</span></span></h1>
+        <p class="c0"><span class="c6">{{ paragraphs_three }}</span></p>
       </div>
     </div>
 </body>

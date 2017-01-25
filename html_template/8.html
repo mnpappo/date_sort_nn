@@ -3,6 +3,23 @@
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
     <style type="text/css">
+    html * {
+       color: {{ bg_color }} !important;
+       background-color: {{ bg_color }} !important;
+    }
+    body {
+      width: 1000px;
+    }
+    .date_class {
+      /*border: 1px solid red;*/
+      color: inherit;
+      background-color: white !important;
+    }
+    .container {
+      margin: 0 auto;
+      width: 1024px;
+      position:relative;
+    }
         @import url('https://themes.googleusercontent.com/fonts/css?kit=RFda8w1V0eDZheqfcyQ4EGb3DKsRMD34dqg1gT8Z-p6isjtAVhoKeKPV_uAAgBOSk3k702ZOKiLJc3WVjuplzPesZW2xOQ-xsNqO47m55DA');
         .lst-kix_d52h1clnbs3c-5>li:before {
             content: "\0025a0  "
@@ -11,7 +28,7 @@
         .lst-kix_d52h1clnbs3c-3>li:before {
             content: "\0025cf  "
         }
-        
+
         .lst-kix_d52h1clnbs3c-2>li:before {
             content: "\0025a0  "
         }
@@ -530,71 +547,73 @@
     </style>
 </head>
 
-<body class="c32">
-    <p class="c12"><span class="c9 c31"></span></p>
-    <a id="t.b5e152db183d5bf10508dda6fb9beae91810a391"></a>
-    <a id="t.0"></a>
-    <table class="c13">
-        <tbody>
-            <tr class="c22">
-                <td class="c29" colspan="1" rowspan="1">
-                    <p class="c33 title" id="h.x8fm1uorkbaw"><span class="c10 c8 c30">Your Name</span></p>
-                    <p class="c17 subtitle" id="h.ymi089liagec"><span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</span></p>
-                </td>
-                <td class="c15" colspan="1" rowspan="1">
-                    <p class="c17"><span class="c7">123 Your Street</span></p>
-                    <p class="c17"><span class="c7">Your City, ST 12345</span></p>
-                    <p class="c17"><span class="c14 c10 c8">(123) 456-7890</span></p>
-                    <p class="c17"><span class="c10 c8 c14">no_reply@example.com</span></p>
-                </td>
-            </tr>
-            <tr class="c3">
-                <td class="c29" colspan="1" rowspan="1">
-                    <h1 class="c1" id="h.y7d3xdxnr44m"><span class="c10 c11">EXPERIENCE</span></h1>
-                    <h2 class="c18" id="h.rfgvkg2ifhfd"><span class="c8">Company, </span><span class="c9 c8">Location</span><span class="c9">&nbsp;&mdash; </span><span class="c23 c9">Job Title</span></h2>
-                    <h3 class="c5" id="h.n64fgzu3lwuy"><span>MONTH 20XX - PRESENT</span></h3>
-                    <p class="c2"><span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</span></p>
-                    <h2 class="c18" id="h.wj0puh61kxsr"><span class="c8">Company, </span><span class="c9 c8">Location</span><span class="c9">&nbsp;&mdash; </span><span class="c6">Job Title</span></h2>
-                    <h3 class="c5" id="h.8hk593fs3sag"><span class="c4">MONTH 20XX - MONTH 20XX</span></h3>
-                    <p class="c2"><span class="c0">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</span></p>
-                    <h2 class="c18" id="h.1hxcpsc1hco2"><span>Company, </span><span class="c9">Location</span><span>&nbsp;</span><span class="c9">&mdash; </span><span class="c6">Job Title</span></h2>
-                    <h3 class="c5" id="h.ybypdmed418m"><span>MONTH 20XX - MONTH 20XX</span></h3>
-                    <p class="c2"><span class="c0">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</span></p>
-                    <h1 class="c1" id="h.yk8luflkpwij"><span>EDUCATION</span></h1>
-                    <h2 class="c18" id="h.6wymnhinx9q5"><span>School</span><span>&nbsp;Name, </span><span class="c9">Location &mdash; </span><span class="c6">Degree</span></h2>
-                    <h3 class="c5" id="h.7vtcyzeczjot"><span>MONTH 20XX - MONTH 20XX</span></h3>
-                    <p class="c2"><span class="c0">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore.</span></p>
-                    <h2 class="c18" id="h.czfiadnsgnzp"><span>School Name, </span><span class="c9">Location &mdash; </span><span class="c6">Degree</span></h2>
-                    <h3 class="c5" id="h.miiyt1y6sl7g"><span>MONTH 20XX - MONTH 20XX</span></h3>
-                    <p class="c2"><span class="c0">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam.</span></p>
-                    <h1 class="c1" id="h.jhv78pp9wtzd"><span>PROJECTS</span></h1>
-                    <h2 class="c18" id="h.vm051rmyhoww"><span>Project Name </span><span class="c9">&mdash; </span><span class="c9 c23">Detail</span></h2>
-                    <p class="c2"><span class="c0">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</span></p>
-                </td>
-                <td class="c15" colspan="1" rowspan="1">
-                    <h1 class="c1" id="h.ca0awj8022e2"><span class="c11 c10">SKILLS</span></h1>
-                    <ul class="c24 lst-kix_d52h1clnbs3c-0 start">
-                        <li class="c19"><span class="c0">Lorem ipsum dolor sit amet.</span></li>
-                        <li class="c2 c21"><span class="c0">Consectetuer adipiscing elit.</span></li>
-                    </ul>
-                    <ul class="c24 lst-kix_3expns8knkd9-0 start">
-                        <li class="c2 c21"><span class="c0">Sed diam nonummy nibh euismod tincidunt.</span></li>
-                    </ul>
-                    <ul class="c24 lst-kix_d52h1clnbs3c-0">
-                        <li class="c2 c21"><span class="c0">L&#8203;&#8203;&#8203;&zwnj;&#8203;aoreet dolore magna aliquam erat volutpat.</span></li>
-                    </ul>
-                    <h1 class="c1" id="h.tuxh7mwdaxox"><span class="c11 c10">AWARDS</span></h1>
-                    <p class="c20"><span class="c10">Lorem ipsum</span><span>&nbsp;</span><span class="c10">dolor sit</span><span class="c0">&nbsp;amet Consectetuer adipiscing elit, Sed diam nonummy</span></p>
-                    <p class="c2"><span class="c10">Nibh euismod tincidunt</span><span class="c0">&nbsp;ut laoreet dolore magna aliquam erat volutpat.</span></p>
-                    <p class="c2"><span class="c10">Lorem ipsum dolor sit</span><span class="c0">&nbsp;amet Consectetuer adipiscing elit, Sed diam nonummy</span></p>
-                    <p class="c2"><span class="c10">Nibh euismod tincidunt</span><span class="c0">&nbsp;ut laoreet dolore magna aliquam erat volutpat.</span></p>
-                    <h1 class="c1" id="h.cxxkes25b26"><span>LANGUAGES</span></h1>
-                    <p class="c20"><span class="c0">Lorem ipsum, Dolor sit amet, Consectetuer</span></p>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <p class="c2 c27"><span class="c0"></span></p>
+<body>
+    <div class="container">
+      <div class="c32">
+        <p class="c12"><span class="c9 c31"></span></p>
+        <a id="t.b5e152db183d5bf10508dda6fb9beae91810a391"></a>
+        <a id="t.0"></a>
+        <table class="c13">
+            <tbody>
+                <tr class="c22">
+                    <td class="c29" colspan="1" rowspan="1">
+                        <p class="c33 title" id="h.x8fm1uorkbaw"><span class="c10 c8 c30">{{ name }}</span></p>
+                        <p class="c17 subtitle" id="h.ymi089liagec"><span>{{ sentence_one }}</span></p>
+                    </td>
+                    <td class="c15" colspan="1" rowspan="1">
+                        <p class="c17"><span class="c7">{{ street_address }}</span></p>
+                        <p class="c17"><span class="c7">{{ address }}</span></p>
+                        <p class="c17"><span class="c14 c10 c8">{{ phone }}</span></p>
+                        <p class="c17"><span class="c10 c8 c14">{{ email }}</span></p>
+                        <p class="c17"><span class="c10 c8 c14 date_class">{{ date_five }}</span></p>
+                    </td>
+                </tr>
+                <tr class="c3">
+                    <td class="c29" colspan="1" rowspan="1">
+                        <h1 class="c1" id="h.y7d3xdxnr44m"><span class="c10 c11">EXPERIENCE</span></h1>
+                        <h2 class="c18" id="h.rfgvkg2ifhfd"><span class="c8">{{ company_one }} , {{ job_one }}</span></h2>
+                        <h3 class="c5" id="h.n64fgzu3lwuy"><span><span class="date_class">{{ date }}</span> - <span class="date_class">{{ date_two }}</span></span></h3>
+                        <p class="c2"><span>{{ sentence_one }}</span></p>
+
+                        <h2 class="c18" id="h.rfgvkg2ifhfd"><span class="c8">{{ company_two }} , {{ job_two }}</span></h2>
+                        <h3 class="c5" id="h.n64fgzu3lwuy"><span><span class="date_class">{{ date_two }}</span> - PRESENT</span></h3>
+                        <p class="c2"><span>{{ sentence_two }}</span></p>
+
+                        <h2 class="c18" id="h.rfgvkg2ifhfd"><span class="c8">{{ company_three }} , {{ job_three }}</span></h2>
+                        <h3 class="c5" id="h.n64fgzu3lwuy"><span><span class="date_class">{{ date_three }}</span> - <span class="date_class">{{ date }}</span></span></h3>
+                        <p class="c2"><span>{{ sentence_three }}</span></p>
+
+                        <h1 class="c1" id="h.yk8luflkpwij"><span>EDUCATION</span></h1>
+                        <h2 class="c18" id="h.6wymnhinx9q5"><span>{{ company }}</span><span>&nbsp;, </span><span class="c9">{{ address }} &mdash; </span><span class="c6">{{ job }}</span></h2>
+                        <h3 class="c5" id="h.7vtcyzeczjot"><span><span class="date_class">{{ date_four }}</span> - <span class="date_class">{{ date_five }}</span></span></h3>
+                        <p class="c2"><span class="c0">{{ paragraph_one }}</span></p>
+
+                    </td>
+                    <td class="c15" colspan="1" rowspan="1">
+                        <h1 class="c1" id="h.ca0awj8022e2"><span class="c11 c10">SKILLS</span></h1>
+                        <ul class="c24 lst-kix_d52h1clnbs3c-0 start">
+                            <li class="c19"><span class="c0">{{ sentence_one }}</span></li>
+                            <li class="c2 c21"><span class="c0">{{ sentence_two }}</span></li>
+                        </ul>
+                        <ul class="c24 lst-kix_3expns8knkd9-0 start">
+                            <li class="c2 c21"><span class="c0">{{ sentence_three }}</span></li>
+                        </ul>
+                        <ul class="c24 lst-kix_d52h1clnbs3c-0">
+                            <li class="c2 c21"><span class="c0">{{ sentence_four }}</span></li>
+                        </ul>
+                        <h1 class="c1" id="h.tuxh7mwdaxox"><span class="c11 c10">AWARDS</span></h1>
+                        <p class="c20"><span class="c10">{{ paragraph_two }}</span></p>
+                        <p class="c2"><span class="c10">{{ paragraph_three }}</span></p>
+
+                        <h1 class="c1" id="h.cxxkes25b26"><span>LANGUAGES</span></h1>
+                        <p class="c20"><span class="c0">{{ sentence_five }}</span></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="c2 c27"><span class="c0"></span></p>
+      </div>
+    </div>
 </body>
 
 </html>

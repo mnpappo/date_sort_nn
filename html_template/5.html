@@ -3,41 +3,23 @@
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
     <style type="text/css">
+    html * {
+       color: {{ bg_color }} !important;
+       background-color: {{ bg_color }} !important;
+    }
     body {
-      color: #000;
-      background-color: {{ bg_color }};
-      width: 1366px;
+      width: 1000px;
     }
-<<<<<<< HEAD:htmls/5.html
-    .date_container {
-      position: relative;
-      height: 1em;
-    }
-
-    .date_container p {
-      position: absolute;
-      top: 50%;
-      transform: translate(0, -50%);
-      left: 50%;
-      border: 1px solid red;
-    }
-
-=======
->>>>>>> 613581dea2892d1f629921bcdd75978f5fbf00ac:htmls/5.html
     .date_class {
-      border: 1px solid red;
-      color: black;
-      background-color: white;
+      /*border: 1px solid red;*/
+      color: inherit;
+      background-color: white !important;
     }
     .container {
       margin: 0 auto;
       width: 1024px;
       position:relative;
     }
-<<<<<<< HEAD:htmls/5.html
-
-=======
->>>>>>> 613581dea2892d1f629921bcdd75978f5fbf00ac:htmls/5.html
         @import url('https://themes.googleusercontent.com/fonts/css?kit=xTOoZr6X-i3kNg7pYrzMsnEzyYBuwf3lO_Sc3Mw9RUVbV0WvE1cEyAoIq5yYZlSc');
         ol {
             margin: 0;
@@ -413,16 +395,6 @@
                 <tr class="c21">
                     <td class="c13" colspan="1" rowspan="1">
                         <p class="c9"><span class="c15 c26">{{ name }}</span></p>
-<<<<<<< HEAD:htmls/5.html
-                        <p class="c24 subtitle" id="h.np1x19peam06"><span class="c15 c16">{{ job }}</span></p>
-                        <p class="c2"><span class="c15 c20">&#12641;</span></p>
-                        <p class="c6"><span class="c15">{{ name_two }}</span></p>
-                        <p class="c2"><span class="c0">{{ street_address }}</span></p>
-                        <p class="c2"><span>{{ city }}, QW {{ postcode }}</span></p>
-                        <p class="c2"><span class="c18">{{ phone }}</span></p>
-                        <p class="c2"><span class="c18">{{ email }}</span></p>
-                        <p class="c6"><span class="date_class">{{ date }}</span></p>
-=======
                         <p class="c24 subtitle" id="h.np1x19peam06">{{ job }}</span></p>
                         <p class="c2"><span class="c15 c20">&#12641;</span></p>
                         <p class="c6"><span class="c15">{{ name_two }}</span></p>
@@ -430,25 +402,10 @@
                         <p class="c2"><span>{{ address }}</span></p>
                         <p class="c2"><span class="c18">{{ phone }}</span></p>
                         <p class="c2"><span class="c18">{{ email }}</span></p>
->>>>>>> 613581dea2892d1f629921bcdd75978f5fbf00ac:htmls/5.html
                     </td>
                     <td class="c8" colspan="1" rowspan="1">
-                        <h2 class="c2" id="h.p4f3lvfon4kg"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 418.00px; height: 2.67px;"><img alt="" src="images/image00.png" style="width: 418.00px; height: 2.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="horizontal line"></span></h2>
+
                         <p class="c6"><span class="c17 date_class">{{ date }}</span></p>
-<<<<<<< HEAD:htmls/5.html
-                        <h1 class="c4 c14" id="h.387wrthhx46m"><span class="c12">{{ name_two }}</span></h1>
-                        <p class="c11"><span class="c0">{{ job }}, {{ company }}</span></p>
-                        <p class="c11"><span class="c0">{{ street_address }} </span></p>
-                        <p class="c11"><span>{{ city }}, ST {{ zipcode }}</span></p>
-                        <p class="c4"><span class="c22">Dear Ms. </span><span>{{ name }}</span><span class="c0">,</span></p>
-                        <p class="c6"><span class="c0"> {{ big_paragraph }} </span></p>
-                        <p
-                            class="c6"><span class="c22">{{ paragraph_one }}</span></p>
-                            <p
-                                class="c6"><span class="c0">{{ paragraph_two }} </span></p>
-                                <p
-                                    class="c6"><span class="c0">{{ paragraph_three }}</span></p>
-=======
                         <h1 class="c4 c14" id="h.387wrthhx46m"><span class="c12">{{ name }}</span></h1>
                         <p class="c11"><span class="c0">{{ job }}, {{ company }}</span></p>
                         <p class="c11"><span class="c0">{{ street_address }} </span></p>
@@ -458,21 +415,16 @@
                         <p
                             class="c6"><span class="c22">{{ paragraph_three }}</span></p>
                             <p
-                                class="c6"><span class="c0">{{ paragraph_four }} <span class="date_class">{{ date }}</span></span></p>
+                                class="c6"><span class="c0">{{ paragraph_four }} <span class="date_class">{{ date_two }}</span></span></p>
                                 <p
                                     class="c6"><span class="c0">{{ paragraph_five }}</span></p>
->>>>>>> 613581dea2892d1f629921bcdd75978f5fbf00ac:htmls/5.html
                                     <p
                                         class="c6"><span class="c0">Sincerely,</span></p>
                                         <p class="c3"><span class="c0"></span></p>
                                         <p class="c3"><span class="c0"></span></p>
                                         <p class="c3"><span class="c0"></span></p>
                                         <p class="c3"><span class="c0"></span></p>
-<<<<<<< HEAD:htmls/5.html
-                                        <h2 class="c6 c14" id="h.l28qqe692yqy"><span class="c12">{{ name_two }}</span><span class="c10">&nbsp;</span></h2></td>
-=======
                                         <h2 class="c6 c14" id="h.l28qqe692yqy"><span class="c12">{{ name }}</span><span class="c10">&nbsp;</span></h2></td>
->>>>>>> 613581dea2892d1f629921bcdd75978f5fbf00ac:htmls/5.html
                 </tr>
             </tbody>
         </table>

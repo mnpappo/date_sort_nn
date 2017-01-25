@@ -3,15 +3,17 @@
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
     <style type="text/css">
+    html * {
+       color: {{ bg_color }} !important;
+       background-color: {{ bg_color }} !important;
+    }
     body {
-      color: #000;
-      background-color: {{ bg_color }};
-      width: 1366px;
+      width: 1000px;
     }
     .date_class {
-      border: 1px solid red;
-      color: black;
-      background-color: white;
+      /*border: 1px solid red;*/
+      color: inherit;
+      background-color: white !important;
     }
     .container {
       margin: 0 auto;
@@ -289,11 +291,11 @@
                 <p class="c1 c2"><span class="c3"></span></p>
                 <p class="c1 c2"><span class="c3"></span></p>
                 <p class="c1 c2"><span class="c3"></span></p>
-                <p class="c1"><span class="c9 date_class">{{ date }}</span></p>
+                <p class="c1"><span class="c9 date_class">{{ date_two }}</span></p>
                 <div>
                     <p class="c1 c2"><span class="c3"></span></p>
                 </div>
-        
+
       </div>
     </div>
 </body>

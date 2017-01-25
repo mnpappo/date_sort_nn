@@ -2,5 +2,6 @@
 generated_html/*
 generated_doc/*
 converted_images/*
+converted_images_black/*
 tools/*
 geckodriver.log

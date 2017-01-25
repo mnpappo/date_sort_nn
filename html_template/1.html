@@ -1,37 +1,331 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <title>Test Template Example</title>
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
     <style type="text/css">
-      body {
-        color: #000;
-        background-color: {{ bg_color }};
-        width: 1366px;
-      }
-      .date_absolute {
-        position: absolute;
-        top: -80px;
-        right: 10px;
-        /*width: 200px;
-        height: 100px;*/
-        border: 1px solid red;
-        color: black;
-        background-color: white;
-      }
-      .container {
-        margin: 0 auto;
-        width: 1024px;
-        position:relative;
-        top:50px;
-      }
+    html * {
+       color: {{ bg_color }} !important;
+       background-color: {{ bg_color }} !important;
+    }
+    body {
+      width: 1000px;
+    }
+    .date_class {
+      /*border: 1px solid red;*/
+      color: inherit;
+      background-color: white !important;
+    }
+    .container {
+      margin: 0 auto;
+      width: 1024px;
+      position:relative;
+    }
+        @import url('https://themes.googleusercontent.com/fonts/css?kit=dpiI8CyVsrzWsJLBFKehGpLhv3qFjX7dUn1mYxfCXhI');
+        ol {
+            margin: 0;
+            padding: 0
+        }
+
+        table td,
+        table th {
+            padding: 0
+        }
+
+        .c0 {
+            margin-left: -0.8pt;
+            padding-top: 10pt;
+            padding-bottom: 0pt;
+            line-height: 1.4;
+            orphans: 2;
+            widows: 2;
+            text-align: left;
+            height: 11pt
+        }
+
+        .c16 {
+            margin-left: -0.8pt;
+            padding-top: 36pt;
+            padding-bottom: 0pt;
+            line-height: 1.4;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c1 {
+            margin-left: -0.8pt;
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.4;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c5 {
+            color: #000000;
+            font-weight: 700;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 20pt;
+            font-family: "Roboto";
+            font-style: normal
+        }
+
+        .c6 {
+            margin-left: -0.8pt;
+            padding-top: 10pt;
+            padding-bottom: 0pt;
+            line-height: 1.4;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c10 {
+            color: #000000;
+            font-weight: 400;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 11pt;
+            font-family: "Roboto";
+            font-style: normal
+        }
+
+        .c7 {
+            margin-left: -0.8pt;
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.0;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c12 {
+            margin-left: -0.8pt;
+            padding-top: 24pt;
+            padding-bottom: 0pt;
+            line-height: 1.4;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c3 {
+            margin-left: -0.8pt;
+            padding-top: 10pt;
+            padding-bottom: 0pt;
+            line-height: 1.0;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c17 {
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.4;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c11 {
+            color: #000000;
+            font-weight: 400;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 14pt;
+            font-family: "Roboto";
+            font-style: normal
+        }
+
+        .c8 {
+            color: #666666;
+            font-weight: 400;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 10pt;
+            font-family: "Roboto";
+            font-style: normal
+        }
+
+        .c13 {
+            font-weight: 400;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 11pt;
+            font-family: "Roboto";
+            font-style: normal
+        }
+
+        .c2 {
+            background-color: #ffffff;
+            max-width: 468pt;
+            padding: 54pt 72pt 54pt 72pt
+        }
+
+        .c4 {
+            color: #6d64e8
+        }
+
+        .c15 {
+            font-size: 14pt
+        }
+
+        .c9 {
+            color: #e01b84
+        }
+
+        .c14 {
+            color: #666666
+        }
+
+        .title {
+            padding-top: 10pt;
+            color: #283592;
+            font-size: 34pt;
+            padding-bottom: 0pt;
+            font-family: "Roboto";
+            line-height: 1.0;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .subtitle {
+            padding-top: 0pt;
+            color: #000000;
+            font-size: 10pt;
+            padding-bottom: 0pt;
+            font-family: "Roboto";
+            line-height: 1.0;
+            text-align: left
+        }
+
+        li {
+            color: #000000;
+            font-size: 11pt;
+            font-family: "Roboto"
+        }
+
+        p {
+            margin: 0;
+            color: #000000;
+            font-size: 11pt;
+            font-family: "Roboto"
+        }
+
+        h1 {
+            padding-top: 0pt;
+            color: #6d64e8;
+            font-weight: 700;
+            font-size: 20pt;
+            padding-bottom: 0pt;
+            font-family: "Roboto";
+            line-height: 1.4;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h2 {
+            padding-top: 10pt;
+            color: #000000;
+            font-size: 21pt;
+            padding-bottom: 0pt;
+            font-family: "Roboto";
+            line-height: 1.4;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h3 {
+            padding-top: 10pt;
+            color: #000000;
+            font-size: 16pt;
+            padding-bottom: 0pt;
+            font-family: "Roboto";
+            line-height: 1.0;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h4 {
+            padding-top: 10pt;
+            color: #eb3f79;
+            font-weight: 700;
+            font-size: 13pt;
+            padding-bottom: 0pt;
+            font-family: "Roboto";
+            line-height: 1.0;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h5 {
+            padding-top: 8pt;
+            color: #666666;
+            font-size: 11pt;
+            padding-bottom: 0pt;
+            font-family: "Trebuchet MS";
+            line-height: 1.4;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h6 {
+            padding-top: 8pt;
+            color: #666666;
+            font-size: 11pt;
+            padding-bottom: 0pt;
+            font-family: "Trebuchet MS";
+            line-height: 1.4;
+            page-break-after: avoid;
+            font-style: italic;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="container">
-      <p>X string: {{text}}</p>
-      <h1 class="date_absolute">{{ date }}</h1>
-      <p>X string: {{text}}</p>
-      <p>X string: {{text}}</p>
+      <div class="c2">
+
+        <h1 class="c17" id="h.dgw388893y39"><span class="c4">{{ company_name }}</span></h1>
+        <p class="c7"><span class="c8">{{ building_number }} {{ street_name }}</span></p>
+        <p class="c7"><span class="c8">{{ city }}, ST {{ postcode }}</span></p>
+        <p class="c7"><span class="c8">{{ phone }}</span></p>
+        <p class="c7"><span class="c8">{{ email }}</span></p>
+        <p class="c12"><span class="c9 date_class">{{ date }}</span></p>
+        <p class="c3"><span class="c8">{{ name }}</span></p>
+        <p class="c16"><span class="c10">Dear {{ name }},</span></p>
+        <p class="c6"><span class="c10">{{ paragraph_one }}</span></p>
+        <div align="center">
+          <span class="date_class">
+            {{ date_two }}
+          </span>
+        </div>
+        <p class="c6"><span>{{ paragraph_two }}</span></p>
+        <p class="c6"><span class="c10">{{ paragraph_three }}</span></p>
+        <p class="c6"><span class="c10">Best regards,</span></p>
+        <p class="c0"><span class="c10"></span></p>
+        <p class="c0"><span class="c10"></span></p>
+        <p class="c0"><span class="c10"></span></p>
+        <p class="c6"><span class="c15">{{ name }}</span></p>
+        <p class="c1"><span class="c13 c14">CEO, Your Company</span></p>
+      </div>
     </div>
-  </body>
+</body>
+
 </html>
