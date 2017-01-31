@@ -29,41 +29,46 @@ def escape_me(unicodeList):
 
 def get_date():
     fake = Faker()
-
+    n = 11
+    #ymd
     date = date = fake.date(pattern="%Y-%m-%d")
-    if random.randint(1, 10) == 1:
+    if random.randint(1, n) == 1:
         date = fake.date(pattern="%Y-%m-%d")
-
-    if random.randint(1, 10) == 2:
+    #dmy th
+    if random.randint(1, n) == 2:
         date = fake.date(pattern="%dth %B %Y")
-
-    if random.randint(1, 10) == 3:
+    #dmy th
+    if random.randint(1, n) == 3:
         date = fake.date(pattern="%dth %b %Y")
-
-    if random.randint(1, 10) == 4:
+    #dmy
+    if random.randint(1, n) == 4:
         date = fake.date(pattern="%d-%m-%Y")
-
-    if random.randint(1, 10) == 5:
+    # dmy
+    if random.randint(1, n) == 5:
         date = fake.date(pattern="%d/%m/%Y")
-
-    if random.randint(1, 10) == 6:
+    # dmy
+    if random.randint(1, n) == 11:
+        date = fake.date(pattern="%d.%m.%Y")
+    #ymd
+    if random.randint(1, n) == 6:
         date = fake.date(pattern="%Y/%m/%d")
-
-    if random.randint(1, 10) == 7:
+    #ymd
+    if random.randint(1, n) == 7:
         date = fake.date(pattern="%Y,%m,%d")
-
-    if random.randint(1, 10) == 8:
+    #dmy
+    if random.randint(1, n) == 8:
         date = fake.date(pattern="%d,%m,%Y")
+    #ymd
+    if random.randint(1, n) == 9:
+        date = fake.date(pattern="%m-%Y-%d")
+    #ymd
+    if random.randint(1, n) == 10:
+        date = fake.date(pattern="%m,%Y,%d")
 
-    if random.randint(1, 10) == 9:
-        date = fake.date(pattern="%Y-%m-%d")
-
-    if random.randint(1, 10) == 10:
-        date = fake.date(pattern="%Y-%m-%d")
 
     return date
 
-def htmlTemplateGenerator(bg_type):
+def htmlTemplateGenerator(bg_type, txt_type):
     fake = Faker()
 
     for index in range(100000):
@@ -78,6 +83,7 @@ def htmlTemplateGenerator(bg_type):
         # pass params to the jinja2 template
         output_from_parsed_template = template.render(
             bg_color = bg_type,
+            txt_color = txt_type,
 
             company_name = fake.company(),
             company = fake.company(),
@@ -147,7 +153,7 @@ def htmlTemplateGenerator(bg_type):
     return True
 
 
-def htmlToImage(image_path, i):
+def htmlToImage(path, i):
     index = i
     # for every html in the direcory
     for html_file in html_file_list:
@@ -163,7 +169,7 @@ def htmlToImage(image_path, i):
         print ("Rendering html {id}".format(id=index))
         driver.get(temp_name)
         image_name = str(index) + '.png'
-        driver.save_screenshot(image_path + image_name)
+        driver.save_screenshot(path + image_name)
         print ("Html to image {id} successfully converted".format(id=index))
         driver.quit()
         index += 1
@@ -172,23 +178,29 @@ def htmlToImage(image_path, i):
 
 if __name__ == '__main__':
     bg_type_black = 'black'
-    bg_type_white = ''
-    image_save_path_white = "./converted_images/"
-    image_save_path_black = "./converted_images_black/"
+    bg_type_white = 'black'
 
-    for index in range(0,20,10):
-        if htmlTemplateGenerator(bg_type_white) is True:
+    txt_type_black = 'black'
+    txt_type_white = 'white'
+
+    image_save_path_white = "./txt_white/"
+    image_save_path_black = "./txt_black/"
+
+    for index in range(0,4000,10):
+        #white txt
+        if htmlTemplateGenerator(bg_type_black, txt_type_white) is True:
             if htmlToImage(image_save_path_white, index) is True:
                 print("-----------------------")
-                print("Successfully all white job done. :) ")
+                print("Successfully all black job done. :) ")
                 print("-----------------------")
             else:
                 print ("Errrroooorrr!!!!!!!!")
 
-        if htmlTemplateGenerator(bg_type_black) is True:
+        #black txt
+        if htmlTemplateGenerator(bg_type_white, txt_type_black) is True:
             if htmlToImage(image_save_path_black, index) is True:
                 print("-----------------------")
-                print("Successfully all black job done. :) ")
+                print("Successfully all white job done. :) ")
                 print("-----------------------")
             else:
                 print ("Errrroooorrr!!!!!!!!")

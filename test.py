@@ -1,40 +1,53 @@
-import gzip, cPickle
-from glob import glob
-import numpy as np, array
-from PIL import Image
+from PIL import Image, ImageOps
 import os
+import glob
+import math
 
-def dir_to_dataset(glob_files):
-    print("Gonna process:\n\t %s"%glob_files)
-    dataset = []
-    for file_count, file_name in enumerate( sorted(glob(glob_files),key=len) ):
-        image = Image.open(file_name)
-        #tograyscale
-        # image = Image.open(file_name).convert('LA')
-        pixels = [f[0] for f in list(image.getdata())]
-        dataset.append(pixels)
-        if file_count % 10 == 0:
-            print("\t %s files processed"%file_count)
+file_location = './resized_images_white/'
+file_location_black = './resized_images_black/'
 
-    return np.array(dataset)
+image_save_path_white = "./resized_images_white_x/"
+image_save_path_black = "./resized_images_black_x/"
+
+image_file_directory = os.path.join(file_location, '*.png')
+image_file_list = glob.glob(image_file_directory)
+image_file_list = image_file_list[0:100:1]
+
+def get_max_img_height_from_direcory(direcory):
+    image_file_directory = os.path.join(direcory, '*.png')
+    image_file_list = glob.glob(image_file_directory)
+    index = 0
+    max_height = 0
+    for image in image_file_list:
+        image = Image.open(file_location + '{id}.png'.format(id=index))
+        width, height = image.size
+        if max_height < height:
+            max_height = height
+        index += 1
+    return max_height
 
 
-imlist = os.listdir('./resized_images_white/')
-ImageDataWhite = np.array([np.array(Image.open('./resized_images_white/'+img).convert('RGB')).flatten() for img in imlist], 'f')
+# print(get_max_img_height_from_direcory(file_location))
 
-imlist = os.listdir('./resized_images_black/')
-ImageDataBlack = np.array([np.array(Image.open('./resized_images_black/'+img).convert('RGB')).flatten() for img in imlist], 'f')
+def resize_image_from_direcory(source_dir, target_dir):
+    index = 0
+    # max_height = get_max_img_height_from_direcory(source_dir)
+    max_height = 596
+    # rounding up to *10
+    # max_height = int(math.ceil(max_height / 10.0)) * 10
+    for image in image_file_list:
+        image = Image.open(source_dir + '{id}.png'.format(id=index))
+        # image = image.crop((0, 0, 1000, max_height))
+        image = ImageOps.fit(image, (max_height, max_height), Image.ANTIALIAS, centering=(0.0, 0.0))
+        width, height = image.size
+        print("resized image {id}. new size is: ".format(id=index), image.size)
+        image.save(target_dir + "{id}.png".format(id=index))
+        index += 1
+    return True
 
-# ImageDataWhite = dir_to_dataset("resized_images_white/*.png")
-# ImageDataBlack = dir_to_dataset("resized_images_black/*.png")
 
-train_set = ImageDataWhite
-test_set = ImageDataBlack
+if resize_image_from_direcory(file_location, image_save_path_white) is True:
+    print("All white resize job done. :) ")
 
-dataset = [train_set, test_set]
-
-print("Pickling dataset now. Sit tight :) ")
-f = gzip.open('file.pkl.gz','wb')
-cPickle.dump(dataset, f, protocol=2)
-f.close()
-print("All done :):)")
+if resize_image_from_direcory(file_location_black, image_save_path_black) is True:
+    print("All black resize job done. :) ")

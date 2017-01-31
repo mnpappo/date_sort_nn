@@ -3,5 +3,8 @@ generated_html/*
 generated_doc/*
 converted_images/*
 converted_images_black/*
-tools/*
 geckodriver.log
+txt_black/*
+txt_white/*
+test/*
+data/*
