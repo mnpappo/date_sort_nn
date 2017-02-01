@@ -8,3 +8,4 @@ txt_black/*
 txt_white/*
 test/*
 data/*
+dataset.h5

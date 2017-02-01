@@ -50,11 +50,7 @@ white, black = load_data()
 x_train, x_test, y_train, y_test = train_test_split(white, black, test_size = 0.2, random_state = 100)
 
 # img_arr = x_train[0:1:1,:,:,:]
-# scipy.misc.imsave('./test.png',scipy.misc.toimage(img_arr.reshape(3,596,596), channel_axis=0))
-# print(img_arr.shape)
-#
-# img_arr = x_test[0:1:1,:,:,:]
-# scipy.misc.imsave('./test2.png',scipy.misc.toimage(img_arr.reshape(3,596,596), channel_axis=0))
+# img = misc.toimage(img_arr.reshape(3,596,596), channel_axis=0)
 # print(img_arr.shape)
 
 
