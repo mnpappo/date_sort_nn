@@ -27,16 +27,6 @@ nb_epoch = 2
 batch_size = 4
 
 def load_data():
-    # path='./dataset.pkl.gz'
-    # if path.endswith('.gz'):
-    #     f = gzip.open(path, 'rb')
-    # else:
-    #     f = open(path, 'rb')
-    # if sys.version_info < (3,):
-    #     data = cPickle.load(f)
-    # else:
-    #     data = cPickle.load(f, encoding='bytes')
-    # f.close()
     print("loading dataset................")
     with h5py.File('dataset.h5', 'r') as hf:
         data = hf['dataset'][:]
@@ -101,43 +91,3 @@ with open("localizing.json", "w") as json_file:
     json_file.write(model_json)
 
 autoencoder.save_weights('localizing.h5')
-
-# load json and create model
-
-# json_file = open('localizing.json', 'r')
-# loaded_model_json = json_file.read()
-# json_file.close()
-# autoencoder = model_from_json(loaded_model_json)
-# print("Loaded model from disk")
-#
-# autoencoder.load_weights('localizing.h5')
-# print("Loaded weight from disk")
-# decoded_imgs = autoencoder.predict(x_test)
-#
-# n = 10
-# plt.figure(figsize=(20, 4))
-# for i in range(n):
-#     # display original
-#     ax = plt.subplot(2, n, i+1)
-#     img = x_test[i]
-#     # img = np.transpose(img)
-#     img = np.moveaxis(img, -1, 0)
-#     img = np.moveaxis(img, -1, 0)
-#     print(x_test[i].shape)
-#     print(img.shape)
-#     plt.imshow(img)
-#     plt.gray()
-#     ax.get_xaxis().set_visible(False)
-#     ax.get_yaxis().set_visible(False)
-#
-#     # display reconstruction
-#     ax = plt.subplot(2, n, i + n+1)
-#     img = decoded_imgs[i]
-#     # img = np.transpose(img)
-#     img = np.moveaxis(img, -1, 0)
-#     img = np.moveaxis(img, -1, 0)
-#     plt.imshow(img)
-#     plt.gray()
-#     ax.get_xaxis().set_visible(False)
-#     ax.get_yaxis().set_visible(False)
-# plt.show()
