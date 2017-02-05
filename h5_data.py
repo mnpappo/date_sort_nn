@@ -11,7 +11,7 @@ import h5py
 print("converting image to numpy array rgb format ---- White")
 imlist = os.listdir('./resized_txt_white/')
 
-# imlist = imlist[0:20:1]
+imlist = imlist[0:100:1]
 
 pbar = tqdm(total=len(imlist))
 ImageDataWhite = []
@@ -27,7 +27,7 @@ ImageDataWhite = np.array(ImageDataWhite)
 print("converting image to numpy array rgb format ---- Black")
 imlist = os.listdir('./resized_txt_black/')
 
-# imlist = imlist[0:20:1]
+imlist = imlist[0:100:1]
 
 pbar = tqdm(total=len(imlist))
 ImageDataBlack = []

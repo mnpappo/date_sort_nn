@@ -42,7 +42,7 @@ rows, cols = 596, 596
 img_rows, img_cols = rows, cols
 nb_epoch = 2
 batch_size = 4
-data_augmentation = False
+data_augmentation = True
 nb_classes = 10
 
 

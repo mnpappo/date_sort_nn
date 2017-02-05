@@ -11,3 +11,4 @@ data/*
 dataset.h5
 resized_txt_black/*
 resized_txt_white/*
+localizing.h5

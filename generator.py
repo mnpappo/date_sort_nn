@@ -68,7 +68,7 @@ def get_date():
 
     return date
 
-def htmlTemplateGenerator(bg_type, txt_type):
+def htmlTemplateGenerator(bg_type, txt_type, date_bg, date_txt):
     fake = Faker()
 
     for index in range(100000):
@@ -84,6 +84,8 @@ def htmlTemplateGenerator(bg_type, txt_type):
         output_from_parsed_template = template.render(
             bg_color = bg_type,
             txt_color = txt_type,
+            date_bg = date_bg,
+            date_txt = date_txt,
 
             company_name = fake.company(),
             company = fake.company(),
@@ -180,15 +182,22 @@ if __name__ == '__main__':
     bg_type_black = 'black'
     bg_type_white = 'black'
 
+
+    date_bg_white = 'white'
+    date_bg_black = 'black'
+
+    date_txt_white = 'white'
+    date_txt_black = 'black'
+
     txt_type_black = 'black'
     txt_type_white = 'white'
 
     image_save_path_white = "./txt_white/"
     image_save_path_black = "./txt_black/"
 
-    for index in range(0,4000,10):
+    for index in range(2260,4000,10):
         #white txt
-        if htmlTemplateGenerator(bg_type_black, txt_type_white) is True:
+        if htmlTemplateGenerator(bg_type_black, txt_type_white, date_bg_black, date_txt_white) is True:
             if htmlToImage(image_save_path_white, index) is True:
                 print("-----------------------")
                 print("Successfully all black job done. :) ")
@@ -197,7 +206,7 @@ if __name__ == '__main__':
                 print ("Errrroooorrr!!!!!!!!")
 
         #black txt
-        if htmlTemplateGenerator(bg_type_white, txt_type_black) is True:
+        if htmlTemplateGenerator(bg_type_black, txt_type_black, date_bg_white, date_txt_white) is True:
             if htmlToImage(image_save_path_black, index) is True:
                 print("-----------------------")
                 print("Successfully all white job done. :) ")
