@@ -19,6 +19,89 @@ import scipy.misc
 import h5py
 
 
+from PIL import Image, ImageMath
+
+def difference1(source, color):
+    """When source is bigger than color"""
+    return (source - color) / (255.0 - color)
+
+def difference2(source, color):
+    """When color is bigger than source"""
+    return (color - source) / color
+
+
+def color_to_alpha(image, color=None):
+    image = image.convert('RGBA')
+    width, height = image.size
+
+    color = map(float, color)
+    img_bands = [band.convert("F") for band in image.split()]
+
+    # Find the maximum difference rate between source and color. I had to use two
+    # difference functions because ImageMath.eval only evaluates the expression
+    # once.
+    alpha = ImageMath.eval(
+        """float(
+            max(
+                max(
+                    max(
+                        difference1(red_band, cred_band),
+                        difference1(green_band, cgreen_band)
+                    ),
+                    difference1(blue_band, cblue_band)
+                ),
+                max(
+                    max(
+                        difference2(red_band, cred_band),
+                        difference2(green_band, cgreen_band)
+                    ),
+                    difference2(blue_band, cblue_band)
+                )
+            )
+        )""",
+        difference1=difference1,
+        difference2=difference2,
+        red_band = img_bands[0],
+        green_band = img_bands[1],
+        blue_band = img_bands[2],
+        cred_band = color[0],
+        cgreen_band = color[1],
+        cblue_band = color[2]
+    )
+
+    # Calculate the new image colors after the removal of the selected color
+    new_bands = [
+        ImageMath.eval(
+            "convert((image - color) / alpha + color, 'L')",
+            image = img_bands[i],
+            color = color[i],
+            alpha = alpha
+        )
+        for i in xrange(3)
+    ]
+
+    # Add the new alpha band
+    new_bands.append(ImageMath.eval(
+        "convert(alpha_band * alpha, 'L')",
+        alpha = alpha,
+        alpha_band = img_bands[3]
+    ))
+
+    return Image.merge('RGBA', new_bands)
+
+
+def replace_color(image_path, from_color, to_color):
+    image = image_path
+    image = color_to_alpha(image, from_color)
+    background = Image.new('RGB', image.size, to_color)
+    background.paste(image.convert('RGB'), mask=image)
+
+    return background
+
+
+
+
+
 nb_channels = 3
 kernel = 3
 rows, cols = 596, 596
@@ -39,7 +122,8 @@ x_train, x_test, y_train, y_test = train_test_split(white, black, test_size = 0.
 
 json_file_path = 'localizing.json'
 weight_file_path = 'localizing.h5'
-images_to_predict = x_test[0:5:1,:,:,:]
+images_to_predict = x_test[0:3:1,:,:,:]
+masks = y_test[0:len(images_to_predict):1,:,:,:]
 print("predicting on {n} images.".format(n=len(images_to_predict)))
 
 def predict_from_model(model_json_path, model_weight_path, images_to_predict):
@@ -72,14 +156,14 @@ def plot_from_predicted_images(predicted_images, images_to_predict):
     returns predicted images as numpy array
     """
     n = len(images_to_predict)
-    plt.figure(figsize=(n*2, n))
+    plt.figure(figsize=(n*14, n*7))
     for i in range(n):
         # display original
         ax = plt.subplot(2, n, i+1)
-        img = images_to_predict[i]
-        img = np.moveaxis(img, -1, 0)
-        img = np.moveaxis(img, -1, 0)
-        plt.imshow(img)
+        imgx = images_to_predict[i]
+        imgx = np.moveaxis(imgx, -1, 0)
+        imgx = np.moveaxis(imgx, -1, 0)
+        plt.imshow(imgx)
         ax.get_xaxis().set_visible(False)
         ax.get_yaxis().set_visible(False)
 
@@ -88,6 +172,19 @@ def plot_from_predicted_images(predicted_images, images_to_predict):
         img = predicted_images[i]
         img = np.moveaxis(img, -1, 0)
         img = np.moveaxis(img, -1, 0)
+
+        imgq = masks[i]
+        imgq = np.moveaxis(imgq, -1, 0)
+        imgq = np.moveaxis(imgq, -1, 0)
+
+
+        imgy = Image.fromarray(img, 'RGB')
+        imgz = Image.fromarray(imgq, 'RGB')
+        # imgz = replace_color(imgz, (0,0,0,255), (14, 114, 214))
+        imgz = replace_color(imgz, (255, 255, 255, 255), (255, 0, 0))
+
+        abc = Image.blend(imgz, imgy, 0.7)
+        abc = np.array(abc)
         plt.imshow(img)
         ax.get_xaxis().set_visible(False)
         ax.get_yaxis().set_visible(False)

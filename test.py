@@ -1,53 +1,98 @@
-from PIL import Image, ImageOps
-import os
-import glob
-import math
+from PIL import Image, ImageMath
 
-file_location = './resized_images_white/'
-file_location_black = './resized_images_black/'
+def difference1(source, color):
+    """When source is bigger than color"""
+    return (source - color) / (255.0 - color)
 
-image_save_path_white = "./resized_images_white_x/"
-image_save_path_black = "./resized_images_black_x/"
-
-image_file_directory = os.path.join(file_location, '*.png')
-image_file_list = glob.glob(image_file_directory)
-image_file_list = image_file_list[0:100:1]
-
-def get_max_img_height_from_direcory(direcory):
-    image_file_directory = os.path.join(direcory, '*.png')
-    image_file_list = glob.glob(image_file_directory)
-    index = 0
-    max_height = 0
-    for image in image_file_list:
-        image = Image.open(file_location + '{id}.png'.format(id=index))
-        width, height = image.size
-        if max_height < height:
-            max_height = height
-        index += 1
-    return max_height
+def difference2(source, color):
+    """When color is bigger than source"""
+    return (color - source) / color
 
 
-# print(get_max_img_height_from_direcory(file_location))
+def color_to_alpha(image, color=None):
+    image = image.convert('RGBA')
+    width, height = image.size
 
-def resize_image_from_direcory(source_dir, target_dir):
-    index = 0
-    # max_height = get_max_img_height_from_direcory(source_dir)
-    max_height = 596
-    # rounding up to *10
-    # max_height = int(math.ceil(max_height / 10.0)) * 10
-    for image in image_file_list:
-        image = Image.open(source_dir + '{id}.png'.format(id=index))
-        # image = image.crop((0, 0, 1000, max_height))
-        image = ImageOps.fit(image, (max_height, max_height), Image.ANTIALIAS, centering=(0.0, 0.0))
-        width, height = image.size
-        print("resized image {id}. new size is: ".format(id=index), image.size)
-        image.save(target_dir + "{id}.png".format(id=index))
-        index += 1
-    return True
+    color = map(float, color)
+    img_bands = [band.convert("F") for band in image.split()]
+
+    # Find the maximum difference rate between source and color. I had to use two
+    # difference functions because ImageMath.eval only evaluates the expression
+    # once.
+    alpha = ImageMath.eval(
+        """float(
+            max(
+                max(
+                    max(
+                        difference1(red_band, cred_band),
+                        difference1(green_band, cgreen_band)
+                    ),
+                    difference1(blue_band, cblue_band)
+                ),
+                max(
+                    max(
+                        difference2(red_band, cred_band),
+                        difference2(green_band, cgreen_band)
+                    ),
+                    difference2(blue_band, cblue_band)
+                )
+            )
+        )""",
+        difference1=difference1,
+        difference2=difference2,
+        red_band = img_bands[0],
+        green_band = img_bands[1],
+        blue_band = img_bands[2],
+        cred_band = color[0],
+        cgreen_band = color[1],
+        cblue_band = color[2]
+    )
+
+    # Calculate the new image colors after the removal of the selected color
+    new_bands = [
+        ImageMath.eval(
+            "convert((image - color) / alpha + color, 'L')",
+            image = img_bands[i],
+            color = color[i],
+            alpha = alpha
+        )
+        for i in xrange(3)
+    ]
+
+    # Add the new alpha band
+    new_bands.append(ImageMath.eval(
+        "convert(alpha_band * alpha, 'L')",
+        alpha = alpha,
+        alpha_band = img_bands[3]
+    ))
+
+    return Image.merge('RGBA', new_bands)
 
 
-if resize_image_from_direcory(file_location, image_save_path_white) is True:
-    print("All white resize job done. :) ")
+def replace_color(image_path, from_color, to_color, save_path):
+    image = Image.open(image_path)
+    image = color_to_alpha(image, from_color)
+    background = Image.new('RGB', image.size, to_color)
+    background.paste(image.convert('RGB'), mask=image)
+    background.save(save_path)
 
-if resize_image_from_direcory(file_location_black, image_save_path_black) is True:
-    print("All black resize job done. :) ")
+
+image_path = '0.png'
+from_color = (0, 0, 0, 255)
+to_color = (14, 114, 214)
+save_path = '0x.png'
+replace_color(image_path, from_color, to_color, save_path)
+
+image_path = '0x.png'
+from_color = (255, 255, 255, 255)
+to_color = (255, 0, 0)
+save_path = '0y.png'
+replace_color(image_path, from_color, to_color, save_path)
+
+
+background = Image.open("0.png").convert('RGB')
+foreground = Image.open("0y.png")
+
+background = Image.blend(foreground, background, alpha=0.7)
+
+background.show()
