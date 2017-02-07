@@ -7,8 +7,8 @@ from tqdm import tqdm
 file_location = './txt_white/'
 file_location_black = './txt_black/'
 
-image_save_path_txt_white = "./resized_txt_white/"
-image_save_path_txt_black = "./resized_txt_black/"
+image_save_path_txt_white = "./resized_txt_white_512/"
+image_save_path_txt_black = "./resized_txt_black_512/"
 
 image_file_directory = os.path.join(file_location, '*.png')
 image_file_list = glob.glob(image_file_directory)
@@ -33,7 +33,7 @@ def get_max_img_height_from_direcory(direcory):
 def resize_image_from_direcory(source_dir, target_dir):
     index = 0
     # max_height = get_max_img_height_from_direcory(source_dir)
-    max_height = 596
+    max_height = 512
     # rounding up to *10
     # max_height = int(math.ceil(max_height / 10.0)) * 10
     pbar = tqdm(total=len(image_file_list))

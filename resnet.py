@@ -227,7 +227,7 @@ class ResnetBuilder(object):
 
 
 def main():
-    model = ResnetBuilder.build_resnet_18((3, 224, 224), 1000)
+    model = ResnetBuilder.build_resnet_50((3, 224, 224), 1000)
     model.compile(loss="categorical_crossentropy", optimizer="sgd")
     model.summary()
 

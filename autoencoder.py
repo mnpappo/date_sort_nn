@@ -39,8 +39,9 @@ white, black = load_data()
 
 x_train, x_test, y_train, y_test = train_test_split(white, black, test_size = 0.2, random_state = 100)
 
-# img_arr = x_train[0:1:1,:,:,:]
-# img = misc.toimage(img_arr.reshape(3,596,596), channel_axis=0)
+# img_arr = y_test[0:1:1,:,:,:]
+# img = scipy.misc.toimage(img_arr.reshape(3,596,596), channel_axis=0)
+# img.show()
 # print(img_arr.shape)
 
 
@@ -71,23 +72,24 @@ x = Convolution2D(16, kernel, kernel, activation='relu')(x)
 x = UpSampling2D((2, 2))(x)
 decoded = Convolution2D(3, kernel, kernel, activation='sigmoid', border_mode='same', name="c6")(x)
 
-autoencoder = Model(input_img, decoded)
+autoencoder = Model(input_img, encoded)
 autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
 
+# model.compile(loss="categorical_crossentropy", optimizer="sgd")
+autoencoder.summary()
 
-
-autoencoder.fit(x_train, y_train,
-                nb_epoch=nb_epoch,
-                batch_size=batch_size,
-                shuffle=True,
-                validation_data=(x_test, y_test),
-                callbacks=[TensorBoard(log_dir='/tmp/autoencoder')])
-
-
-# date localizing test
-# serialize model to JSON
-model_json = autoencoder.to_json()
-with open("localizing.json", "w") as json_file:
-    json_file.write(model_json)
-
-autoencoder.save_weights('localizing.h5')
+# autoencoder.fit(x_train, y_train,
+#                 nb_epoch=nb_epoch,
+#                 batch_size=batch_size,
+#                 shuffle=True,
+#                 validation_data=(x_test, y_test),
+#                 callbacks=[TensorBoard(log_dir='/tmp/autoencoder')])
+#
+#
+# # date localizing test
+# # serialize model to JSON
+# model_json = autoencoder.to_json()
+# with open("localizing.json", "w") as json_file:
+#     json_file.write(model_json)
+#
+# autoencoder.save_weights('localizing.h5')
