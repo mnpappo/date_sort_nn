@@ -72,7 +72,7 @@ x = Convolution2D(16, kernel, kernel, activation='relu')(x)
 x = UpSampling2D((2, 2))(x)
 decoded = Convolution2D(3, kernel, kernel, activation='sigmoid', border_mode='same', name="c6")(x)
 
-autoencoder = Model(input_img, encoded)
+autoencoder = Model(input_img, decoded)
 autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
 
 # model.compile(loss="categorical_crossentropy", optimizer="sgd")
