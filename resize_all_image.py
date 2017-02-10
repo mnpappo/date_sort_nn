@@ -3,12 +3,13 @@ import os
 import glob
 import math
 from tqdm import tqdm
+from resizeimage import resizeimage
 
-file_location = './txt_white/'
-file_location_black = './txt_black/'
+file_location = './raw_doc/'
+file_location_black = './raw_mask/'
 
-image_save_path_txt_white = "./resized_txt_white_512/"
-image_save_path_txt_black = "./resized_txt_black_512/"
+image_save_path_txt_white = "./raw_doc_resized/"
+image_save_path_txt_black = "./raw_mask_resized/"
 
 image_file_directory = os.path.join(file_location, '*.png')
 image_file_list = glob.glob(image_file_directory)
@@ -31,18 +32,21 @@ def get_max_img_height_from_direcory(direcory):
 # print(get_max_img_height_from_direcory(file_location))
 
 def resize_image_from_direcory(source_dir, target_dir):
-    index = 0
+    index = 1
     # max_height = get_max_img_height_from_direcory(source_dir)
-    max_height = 512
+    max_height = 768
     # rounding up to *10
     # max_height = int(math.ceil(max_height / 10.0)) * 10
     pbar = tqdm(total=len(image_file_list))
     for image in image_file_list:
         image = Image.open(source_dir + '{id}.png'.format(id=index))
         # image = image.crop((0, 0, 1000, max_height))
-        image = ImageOps.fit(image, (max_height, max_height), Image.ANTIALIAS, centering=(0.0, 0.0))
+        # image = ImageOps.fit(image, (max_height, max_height), Image.ANTIALIAS)
+        # image.thumbnail((512,768), Image.ANTIALIAS)
+        image = resizeimage.resize_contain(image, [max_height, max_height])
+
         width, height = image.size
-        # print("resized image {id}. new size is: ".format(id=index), image.size)
+        print("resized image {id}. new size is: ".format(id=index), image.size)
         image.save(target_dir + "{id}.png".format(id=index))
         index += 1
         pbar.update(1)

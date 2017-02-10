@@ -17,11 +17,12 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import scipy.misc
 import h5py
+from PIL import Image, ImageMath
 
 
 nb_channels = 3
 kernel = 3
-rows, cols = 596, 596
+rows, cols = 512, 512
 nb_epoch = 2
 batch_size = 4
 
@@ -41,12 +42,18 @@ json_file_path = 'localizing.json'
 weight_file_path = 'localizing.h5'
 images_to_predict = x_test[0:3:1,:,:,:]
 masks = y_test[0:3:1,:,:,:]
+
+# img_arr = y_test[0:1:1,:,:,:]
+# img = scipy.misc.toimage(img_arr.reshape(3,512,512), channel_axis=0)
+# img.show()
+
 print("predicting on {n} images.".format(n=len(images_to_predict)))
+
 
 def predict_from_model(model_json_path, model_weight_path, images_to_predict):
     """
     model_weight_path : model weight file path
-    model_json_path : model json file path
+    model_json_path : odel json file path
     images_to_predict : 4 dimentional images as numpy array to predict.
         Example : (10,3,596,596)
 
@@ -60,8 +67,8 @@ def predict_from_model(model_json_path, model_weight_path, images_to_predict):
 
     model.load_weights(model_weight_path)
     predicted_images = model.predict(images_to_predict)
-
     return predicted_images
+
 
 def plot_from_predicted_images(predicted_images, images_to_predict, masks):
     """

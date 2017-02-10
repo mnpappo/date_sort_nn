@@ -15,3 +15,7 @@ resized_txt_black_512/*
 resized_txt_white_512/*
 localizing.h5
 .DS_Store
+raw_doc/*
+raw_mask/*
+raw_doc_resized/*
+raw_mask_resized/*

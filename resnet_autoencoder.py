@@ -19,13 +19,14 @@ from keras.regularizers import l2
 from keras import backend as K
 import h5py
 from sklearn.cross_validation import train_test_split
+from keras.utils.visualize_util import plot
 
 
 nb_channels = 3
 kernel = 3
 rows, cols = 512, 512
-nb_epoch = 2
-batch_size = 4
+nb_epoch = 100
+batch_size = 12
 
 def load_data():
     print("loading dataset................")
@@ -262,7 +263,7 @@ def basic_block_dc(nb_filter, init_subsample=(1, 1), is_first_block_of_first_lay
                                  W_regularizer=l2(0.0001))(input)
             # upsampled = UpSampling2D(size=(1,1))(conv1)
         else:
-            conv1 = _bn_relu_conv_dc(nb_filter=nb_filter, nb_row=3, nb_col=3, subsample=init_subsample)(input)
+            conv1 = _bn_relu_conv_dc(nb_filter=nb_filter, nb_row=3, nb_col=3, subsample=init_subsample, border_mode="same")(input)
             conv1 = UpSampling2D(size=init_subsample)(conv1)
 
         residual = _bn_relu_conv_dc(nb_filter=nb_filter, nb_row=3, nb_col=3)(conv1)
@@ -347,29 +348,17 @@ class ResnetBuilder(object):
 
         block = encoded
         nb_filter = 16
+        repetitions.append(repetitions[-1])
+        # repetitions = [3, 4, 6, 3, 3]
         for i, r in enumerate(repetitions):
             block = _residual_block_dc(block_fn, nb_filter=nb_filter, repetitions=r, is_first_layer=(i == 0))(block)
             nb_filter *= 2
 
-        conv1 = _conv_bn_relu(nb_filter=128, nb_row=7, nb_col=7, border_mode="same")(block)
-        decoded = UpSampling2D(size=(4, 4))(conv1)
+        norm = _bn_relu(block)
+        # conv1 = _conv_bn_relu(nb_filter=128, nb_row=7, nb_col=7, border_mode="same")(norm)
+        decoded = UpSampling2D(size=(2, 2))(norm)
 
-        decoded = _conv_bn_relu(nb_filter=3, nb_row=7, nb_col=7, border_mode="same")(decoded)
-
-
-
-        #autoencoder dont need this block ):
-
-        # # Last activation
-        # block = _bn_relu(block)
-
-
-        # # Classifier block
-        # pool2 = AveragePooling2D(pool_size=(block._keras_shape[ROW_AXIS],
-        #                                     block._keras_shape[COL_AXIS]),
-        #                          strides=(1, 1))(block)
-        # flatten1 = Flatten()(pool2)
-        # dense = Dense(output_dim=num_outputs, init="he_normal", activation="softmax")(flatten1)
+        decoded = _conv_bn_relu(nb_filter=3, nb_row=3, nb_col=3, border_mode="same")(decoded)
 
         model = Model(input=input, output=decoded)
         return model
@@ -396,9 +385,12 @@ class ResnetBuilder(object):
 
 
 def main():
-    autoencoder = ResnetBuilder.build_resnet_18((3, 512, 512))
+    # autoencoder = ResnetBuilder.build_resnet_18((3, 512, 512))
+    autoencoder = ResnetBuilder.build_resnet_34((3, 512, 512))
     autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
     autoencoder.summary()
+    plot(autoencoder, to_file='model.png')
+    plot(autoencoder, to_file='model_with_name.png', show_shapes=True)
 
     autoencoder.fit(x_train, y_train,
                     nb_epoch=nb_epoch,
@@ -408,7 +400,6 @@ def main():
                     callbacks=[TensorBoard(log_dir='/tmp/autoencoder')])
 
 
-    # date localizing test
     # serialize model to JSON
     model_json = autoencoder.to_json()
     with open("localizing_resnet.json", "w") as json_file:
