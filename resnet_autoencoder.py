@@ -386,26 +386,26 @@ class ResnetBuilder(object):
 
 def main():
     # autoencoder = ResnetBuilder.build_resnet_18((3, 512, 512))
-    autoencoder = ResnetBuilder.build_resnet_34((3, 512, 512))
+    autoencoder = ResnetBuilder.build_resnet_34((3, 768, 768))
     autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
     autoencoder.summary()
-    plot(autoencoder, to_file='model.png')
-    plot(autoencoder, to_file='model_with_name.png', show_shapes=True)
-
-    autoencoder.fit(x_train, y_train,
-                    nb_epoch=nb_epoch,
-                    batch_size=batch_size,
-                    shuffle=True,
-                    validation_data=(x_test, y_test),
-                    callbacks=[TensorBoard(log_dir='/tmp/autoencoder')])
-
-
-    # serialize model to JSON
-    model_json = autoencoder.to_json()
-    with open("localizing_resnet.json", "w") as json_file:
-        json_file.write(model_json)
-
-    autoencoder.save_weights('localizing_resnet.h5')
+    # plot(autoencoder, to_file='model.png')
+    # plot(autoencoder, to_file='model_with_name.png', show_shapes=True)
+    #
+    # autoencoder.fit(x_train, y_train,
+    #                 nb_epoch=nb_epoch,
+    #                 batch_size=batch_size,
+    #                 shuffle=True,
+    #                 validation_data=(x_test, y_test),
+    #                 callbacks=[TensorBoard(log_dir='/tmp/autoencoder')])
+    #
+    #
+    # # serialize model to JSON
+    # model_json = autoencoder.to_json()
+    # with open("localizing_resnet.json", "w") as json_file:
+    #     json_file.write(model_json)
+    #
+    # autoencoder.save_weights('localizing_resnet.h5')
 
 
 if __name__ == '__main__':

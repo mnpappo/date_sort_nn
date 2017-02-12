@@ -9,14 +9,14 @@ import h5py
 
 
 print("converting image to numpy array rgb format ---- White")
-imlist = os.listdir('./resized_txt_white_512/')
+imlist = os.listdir('./raw_doc_resized/')
 
-imlist = imlist[0:100:1]
+# imlist = imlist[0:100:1]
 
 pbar = tqdm(total=len(imlist))
 ImageDataWhite = []
 for img in imlist:
-    img = np.array(Image.open('./resized_txt_white_512/'+img).convert('RGB'))
+    img = np.array(Image.open('./raw_doc_resized/'+img).convert('RGB'))
     img = np.rollaxis(img, -1, -3)
     # print(img.shape)
     ImageDataWhite.append(img)
@@ -25,14 +25,14 @@ pbar.close()
 ImageDataWhite = np.array(ImageDataWhite)
 
 print("converting image to numpy array rgb format ---- Black")
-imlist = os.listdir('./resized_txt_black_512/')
+imlist = os.listdir('./raw_mask_resized/')
 
-imlist = imlist[0:100:1]
+# imlist = imlist[0:100:1]
 
 pbar = tqdm(total=len(imlist))
 ImageDataBlack = []
 for img in imlist:
-    img = np.array(Image.open('./resized_txt_black_512/'+img).convert('RGB'))
+    img = np.array(Image.open('./raw_mask_resized/'+img).convert('RGB'))
     img = np.rollaxis(img, -1, -3)
     # print(img.shape)
     ImageDataBlack.append(img)
@@ -42,6 +42,6 @@ ImageDataBlack = np.array(ImageDataBlack)
 
 dataset = np.array([ImageDataWhite, ImageDataBlack])
 
-with h5py.File('dataset.h5', 'w') as hf:
+with h5py.File('dataset_raw.h5', 'w') as hf:
     hf.create_dataset("dataset",  data=dataset)
     print ("Done :) ")

@@ -22,13 +22,13 @@ from PIL import Image, ImageMath
 
 nb_channels = 3
 kernel = 3
-rows, cols = 512, 512
+rows, cols = 768, 768
 nb_epoch = 2
 batch_size = 4
 
 def load_data():
     print("\nloading dataset")
-    with h5py.File('dataset.h5', 'r') as hf:
+    with h5py.File('dataset_raw.h5', 'r') as hf:
         data = hf['dataset'][:]
 
     return data[0].reshape(len(data[0]), nb_channels, rows, cols) , data[1].reshape(len(data[1]), nb_channels, rows, cols)
@@ -38,8 +38,8 @@ white, black = load_data()
 
 x_train, x_test, y_train, y_test = train_test_split(white, black, test_size = 0.2, random_state = 100)
 
-json_file_path = 'localizing.json'
-weight_file_path = 'localizing.h5'
+json_file_path = 'localizing_raw.json'
+weight_file_path = 'localizing_raw.h5'
 images_to_predict = x_test[0:3:1,:,:,:]
 masks = y_test[0:3:1,:,:,:]
 

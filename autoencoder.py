@@ -22,13 +22,13 @@ import h5py
 
 nb_channels = 3
 kernel = 3
-rows, cols = 512, 512
+rows, cols = 768, 768
 nb_epoch = 2
 batch_size = 4
 
 def load_data():
     print("loading dataset................")
-    with h5py.File('dataset.h5', 'r') as hf:
+    with h5py.File('dataset_raw.h5', 'r') as hf:
         data = hf['dataset'][:]
 
     return data[0].reshape(len(data[0]), nb_channels, rows, cols) , data[1].reshape(len(data[1]), nb_channels, rows, cols)
@@ -89,7 +89,7 @@ autoencoder.fit(x_train, y_train,
 # date localizing test
 # serialize model to JSON
 model_json = autoencoder.to_json()
-with open("localizing.json", "w") as json_file:
+with open("localizing_raw.json", "w") as json_file:
     json_file.write(model_json)
 
-autoencoder.save_weights('localizing.h5')
+autoencoder.save_weights('localizing_raw.h5')
