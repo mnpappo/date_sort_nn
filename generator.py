@@ -1,8 +1,11 @@
+# -*- coding: utf-8 -*-
+
+
 from PIL import Image
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from jinja2 import Environment, FileSystemLoader
-from faker import Faker
+from faker import Factory
 import glob
 import os
 import random
@@ -23,63 +26,97 @@ def escape_me(unicodeList):
     newList = [ s.encode('utf8') for s in unicodeList ]
     prize = ""
     for s in newList:
-        prize = prize + s
+        prize = prize + s.decode('utf-8')
     return prize
 
 
 def get_date():
-    fake = Faker()
-    n = 11
-    #ymd
-    date = date = fake.date(pattern="%Y-%m-%d")
-    if random.randint(1, n) == 1:
-        date = fake.date(pattern="%Y-%m-%d")
-    #dmy th
-    if random.randint(1, n) == 2:
-        date = fake.date(pattern="%dth %B %Y")
-    #dmy th
-    if random.randint(1, n) == 3:
-        date = fake.date(pattern="%dth %b %Y")
-    #dmy
-    if random.randint(1, n) == 4:
-        date = fake.date(pattern="%d-%m-%Y")
-    # dmy
-    if random.randint(1, n) == 5:
-        date = fake.date(pattern="%d/%m/%Y")
-    # dmy
-    if random.randint(1, n) == 11:
-        date = fake.date(pattern="%d.%m.%Y")
-    #ymd
-    if random.randint(1, n) == 6:
-        date = fake.date(pattern="%Y/%m/%d")
-    #ymd
-    if random.randint(1, n) == 7:
-        date = fake.date(pattern="%Y,%m,%d")
-    #dmy
-    if random.randint(1, n) == 8:
-        date = fake.date(pattern="%d,%m,%Y")
-    #ymd
-    if random.randint(1, n) == 9:
-        date = fake.date(pattern="%m-%Y-%d")
-    #ymd
-    if random.randint(1, n) == 10:
-        date = fake.date(pattern="%m,%Y,%d")
+    dates = [
+         '১লা জানুয়ারী ১৯৯৩' , '২২ শে জানুয়ারী ২০০৩' , '১১ই জানুয়ারী ১৯৯৯', '৪ঠা জানুয়ারী ১৯৯৫',
+         '২৯শে জানুয়ারী ২০০৭', '৫ম জানুয়ারী ২০১৭', '১০ম জানুয়ারী ২০১৫', '১৫ই জানুয়ারী ২০১০',
+         '২০১৯ ১৯শে জানুয়ারী', '২০১১ জানুয়ারী ৭', '২৯শে ফেব্রুয়ারী ২০০৭', '২১ শে ফেব্রুয়ারী ২০০২' ,
+         '১১ই ফেব্রুয়ারী ১৯৭১' , '২০১৯ ২০শে ফেব্রুয়ারী', '২০০৯ ফেব্রুয়ারী ৪', '২০৩০ ৬ই ফেব্রুয়ারী',
+         '২০১৮ ফেব্রুয়ারী ৩', '১২ই মার্চ ১৯৯৫' , '২০১৯ ২০শে মার্চ', '২০৯০ মার্চ ৪', '১০ম মার্চ ১২' ,
+         '১৪ই এপ্রিল ১৯৩১' , '৩০০০ ২২ শে এপ্রিল', '২০৪১ এপ্রিল ৪', '১৬ম এপ্রিল ৩০',
+         '২০ শে ফেব্রয়ারি, ২০১৭', '০৭/০৫/২০০৭', '২১-২০০০-১২', '২২.২০১১.০৬',' ২০১৩/২৩/১১',
+         '০১ ই জানুয়ারি, ২০০৫',  '০৫/০৯/২০১৫', '২০০৩-০৭-২৫', '২০০১.১১.১২' , '২০১০/১০/২২',
+         '০২ রা মার্চ' , '২০০৭,১১/১২/২০০১', '২০১০-০৫-০৫', '২০১৩.১২.১৮', '২০১৭/২৫/০৫', '১৪ ই আগস্ট',
+         '২০০১,০৫/০৯/২০১০', '২০০৮-১৫-০৭', '২০১৪.১১.১৮', '২০০১/২৬/০৭', '২২ শে ডিসেম্বর',
+         '২০১৪,১৫/১২/২০০৬', '২০০১-২৫-০২', '২০০২.১৬.০৪', '২০০৫/২৭/০৯', '২৭ শে অক্টোবর',
+         '২০১২,২৭/১১/২০০৯', '২০০৯/২৭/১২', '২০০৮.১৯.০৯', '২০০২-২২-১০', '০৩ রা এপ্রিল',
+         '২০০৭,১২/১২/২০১২', '২০০০/২০/০৫', '২০১০.২৯.০১', '২০০৭-২৭-০৫', '০৪ ঠা মে, ২০০৮',
+         '১৩/০৩/২০০২', '২০০৬/৩০/১১', '২০০২.৩১.১১', '২০১০/১৮/০৬', '০৫ ই জুন২০০৯',
+         '২৫/১২/২০০৫', '২০০৭/৩১/০১', '২০১৫.২২.০৩', '২০০৯/২৩/০৪', '০৬ ই জুলাই২০১০',
+         '২৮/০৬/২০০৬', '২০১০/২৪/০৬', '২০১৩.১৪.০৮', '২০০৩/১৭/০৮', '০৭ ই সেপ্টেম্বর ২০১১',
+         '২৯/০২/২০০৫', '২০০৬-২৭-০৫', '২০১১.১৯.০৯', '২০০৬/১৯/০৪', '০৮ ই নভেম্বর, ২০১২',
+         '৩০/০৫/২০০৯', '২০১০-২৩-০৯', '২০১২.০৮.১৬', '২০০৭/২২/১০', '০৯ ই জানুয়ারি, ২০০৬',
+         '২৭/১১/২০১১', '২০১৫-২১-১০', '২০১৪.১০.১০', '২০১২.১২.১৫', '১০ ই ফেব্রয়ারি - ২০০১',
+         '০২/০২/২০০২', '২০০৩-০৫-১৯', '২০১৬.০৭.১৭', '২০১৬-১৬-১২', '১১ ই আগস্ট,২০১০',
+         '০৫/০৫/২০০১', '২০০৯/০৯/১৯', '২০০৩.১৫.০৩', '২০০৮.১২.০৯', '১২ ই ডিসেম্বর - ২০০৮',
+         '১১/১২/২০০৯', '২০১০/১২/০১', '২০০৯.১২.১২', '২০১৫-০৬-১২', '১৩ ই মার্চ - ২০০৯',
+         '২৫/০১/২০০৬', '২০১৪/০৬/২৫', '২০১৩.২৭.০৫', '২০১৩-০৯-২৯', '১৪ ই ফেব্রয়ারি - ২০০২',
+         '০৩/০৬/২০০৫', '২০১৭/০১/২৩', '২০১৬.১৯.০৪', '২০০৫.১৭.০৬', '১৫ ই ডিসেম্বর, ২০১৪',
+         '০৫/০৭/২০১০', '২০১৫/০৫/২৯', '২০১১.২০.০৬', '২০০৮.১৯.০৪', '১৬ ই সেপ্টেম্বর, ২০১১',
+         '০৯/১০/২০০৫', '২০১৬/০৮/২৭', '২০০০.১৯.০৫', '২০০৬.২০.০৯'
+    ]
 
+    index = random.randint(0, len(dates)-1)
+    date = dates[index]
 
     return date
 
-def htmlTemplateGenerator(bg_type, txt_type, date_bg, date_txt):
-    fake = Faker()
 
-    for index in range(100000):
+
+def get_phone():
+    phone = [
+         '+৩৩-০১৭১৪৩৫৯৬৬৬',
+         '+৬৬০১৬৮৯৩৮৫০২১',
+         '+০২-০১৯৫৩৮৭৬৩৯৭',
+         '০১৬৭৮৭০৭৮৩৪',
+         '০১৬৭৯৫৮২৯৩৫',
+         '০২২৫২৬',
+         '৮৮৭৩৪৯২০৮৭৫৭২২',
+         '+৮৮১৬৪৯২০৮৭৫৭২২',
+         '+৮৭১৬৪৯২০৮৭৫৭২২',
+         '+৮৮১৬৪-৯২০৮৭৫৭২২',
+         '২২২০১৯৮৮৫৪৭৬৮৪',
+         '০১৭১৩৯৭৩৯৭৫',
+         '০০০৮৭৩৮৪৫৬৭৫',
+         '৫৫৭৮৭৬৮৯৩৪',
+         '৪৩৫৭৬৮৮০৯৬৬৬',
+         '০১১৯৯৭৫৮৪৯৩',
+         '৯৮৪৩৭',
+         '০১৬৭৮৮৮২২৯৯১০',
+         '০১৯১৪৮৫৯৪৭৭',
+         '০১৬৭৮৯০৯২৩৪',
+         '০১৭৫১২৩৪৫৬৭',
+         '০১১৯১৪৭৫৯৩৭',
+         '০১৭৩৭৮৯৪৫৬৭',
+         '০১৭৯৭৬৫৪৩২৮',
+         '০০৪৪৭৮৪৫৪৭',
+    ]
+
+    index = random.randint(0, len(phone)-1)
+    p = phone[index]
+
+    return p
+
+
+
+
+def htmlTemplateGenerator(bg_type, txt_type, date_bg, date_txt):
+    fake = Factory.create('bn_BD')
+
+    for index in range(1000000):
         file_name = "{id}.html".format(id=index)
         # check for TemplateDoesnotExist error
         try:
             template = env.get_template(file_name)
         except Exception as e:
             print ("No more template found. Tried to find {id}".format(id=index))
-            print ("--------------------")
+            print (e)
             break
+
         # pass params to the jinja2 template
         output_from_parsed_template = template.render(
             bg_color = bg_type,
@@ -100,12 +137,12 @@ def htmlTemplateGenerator(bg_type, txt_type, date_bg, date_txt):
             building_number = fake.building_number(),
             street_name = fake.street_name(),
             city = fake.city(),
-            postcode = fake.postalcode(),
-            zipcode = fake.zipcode(),
+            postcode = fake.postcode(),
+            zipcode = fake.postcode(),
             street_address = fake.street_address(),
             address = fake.address(),
 
-            phone = fake.phone_number(),
+            phone = get_date(),
             email = fake.email(),
 
             date = get_date(),
@@ -117,7 +154,8 @@ def htmlTemplateGenerator(bg_type, txt_type, date_bg, date_txt):
             day = fake.day_of_week(),
             time = fake.time(pattern="%H:%M:%S"),
 
-            name = fake.name(),
+
+            name = escape_me(fake.name()),
             name_two = fake.name(),
             name_three = fake.name(),
 
@@ -145,7 +183,7 @@ def htmlTemplateGenerator(bg_type, txt_type, date_bg, date_txt):
         # to save the results
         file_name = "generated_html/{id}.html".format(id=index)
         try:
-            with open(file_name, "wb") as htmlFIle:
+            with open(file_name, "w") as htmlFIle:
                 htmlFIle.write(output_from_parsed_template)
         except IOError as e:
             print ("Error: can\'t find file or read data!!!!!!")
@@ -192,10 +230,10 @@ if __name__ == '__main__':
     txt_type_black = 'black'
     txt_type_white = 'white'
 
-    image_save_path_white = "./txt_white/"
-    image_save_path_black = "./txt_black/"
+    image_save_path_white = "./txt_white_bn/"
+    image_save_path_black = "./txt_black_bn/"
 
-    for index in range(2260,4000,10):
+    for index in range(0,30000,10):
         #white txt
         if htmlTemplateGenerator(bg_type_black, txt_type_white, date_bg_black, date_txt_white) is True:
             if htmlToImage(image_save_path_white, index) is True:
