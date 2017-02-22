@@ -6,10 +6,13 @@ converted_images_black/*
 geckodriver.log
 txt_black/*
 txt_white/*
+txt_black_bn/*
+txt_white_bn/*
 test/*
 data/*
 dataset.h5
 dataset_raw.h5
+dataset_gray.h5
 resized_txt_black/*
 resized_txt_white/*
 resized_txt_black_512/*
@@ -23,3 +26,4 @@ raw_doc_resized/*
 raw_mask_resized/*
 gen_doc_gray/*
 gen_mask_gray/*
+predicted/*

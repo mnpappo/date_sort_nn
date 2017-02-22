@@ -233,7 +233,7 @@ if __name__ == '__main__':
     image_save_path_white = "./txt_white_bn/"
     image_save_path_black = "./txt_black_bn/"
 
-    for index in range(0,30000,10):
+    for index in range(9300,30000,10):
         #white txt
         if htmlTemplateGenerator(bg_type_black, txt_type_white, date_bg_black, date_txt_white) is True:
             if htmlToImage(image_save_path_white, index) is True:
