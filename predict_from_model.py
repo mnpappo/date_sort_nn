@@ -41,8 +41,8 @@ x_train, x_test, y_train, y_test = train_test_split(white, black, test_size = 0.
 
 json_file_path = 'localizing_gray.json'
 weight_file_path = 'localizing_gray.h5'
-images_to_predict = x_test
-masks = y_test
+images_to_predict = x_test[10:13:1,:,:,:]
+masks = y_test[10:13:1,:,:,:]
 
 # images_to_predict = images_to_predict.reshape((1,512,512))
 # masks = masks.reshape((1,512,512))
@@ -71,6 +71,14 @@ def predict_from_model(model_json_path, model_weight_path, images_to_predict):
     model = model_from_json(loaded_model_json)
 
     model.load_weights(model_weight_path)
+    model.summary()
+
+    model.compile(loss='binary_crossentropy',
+              optimizer='adadelta',
+              metrics=['accuracy'])
+    score = model.evaluate(x_test, y_test, verbose=0)
+    print('Test score:', score[0])
+    print('Test accuracy:', score[1])
     print("Predicting......")
     predicted_images = model.predict(images_to_predict, batch_size=1)
     return predicted_images
@@ -124,7 +132,7 @@ def plot_from_predicted_images(predicted_images, images_to_predict, masks):
         plt.gray()
         ax.get_xaxis().set_visible(False)
         ax.get_yaxis().set_visible(False)
-    plt.savefig(plot_save_path + 'plotted_prediction-{index}.png'.format(index=1))
+    plt.savefig('plotted_prediction.png'.format(index=1))
     # plt.show()
 
 

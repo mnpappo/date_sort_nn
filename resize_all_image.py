@@ -10,11 +10,11 @@ from skimage import io
 #
 
 
-file_location = './resized_txt_white/'
-file_location_black = './resized_txt_black/'
+file_location = './txt_white_bn/'
+file_location_black = './txt_black_bn/'
 
-image_save_path_txt_white = "./gen_doc_gray/"
-image_save_path_txt_black = "./gen_mask_gray/"
+image_save_path_txt_white = "./resized_doc_bn_596/"
+image_save_path_txt_black = "./resized_mask_bn_596/"
 
 image_file_directory = os.path.join(file_location, '*.png')
 image_file_list = glob.glob(image_file_directory)
@@ -26,7 +26,7 @@ def get_max_img_height_from_direcory(direcory):
     index = 0
     max_height = 0
     for image in image_file_list:
-        image = Image.open(file_location + '{id}.png'.format(id=index))
+        image = Image.open(image)
         width, height = image.size
         if max_height < height:
             max_height = height
@@ -40,16 +40,16 @@ def resize_image_from_direcory(source_dir, target_dir):
     image_file_directory = os.path.join(source_dir, '*.png')
     image_file_list = glob.glob(image_file_directory)
     index = 0
-    # max_height = get_max_img_height_from_direcory(source_dir)
-    max_height = 768
+    max_height = get_max_img_height_from_direcory(source_dir)
+    # max_height = 768
     # rounding up to *10
     # max_height = int(math.ceil(max_height / 10.0)) * 10
     pbar = tqdm(total=len(image_file_list))
     for image in image_file_list:
         image = Image.open(image).convert('L')
-        # image = image.crop((0, 0, 1000, max_height))
-        # image = ImageOps.fit(image, (max_height, max_height), Image.ANTIALIAS)
-        # image.thumbnail((512,768), Image.ANTIALIAS)
+        image = image.crop((0, 0, 1000, max_height))
+        image = ImageOps.fit(image, (max_height, max_height), Image.ANTIALIAS)
+        image.thumbnail((596,596), Image.ANTIALIAS)
 
         #
         # image = resizeimage.resize_contain(image, [max_height, max_height])
